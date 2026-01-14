@@ -91,7 +91,7 @@ class Sprite:
 
     def __init__(
         self,
-        pixels: List[List[int]],
+        pixels: List[List[int]] | np.ndarray,
         name: Optional[str] = None,
         x: int = 0,
         y: int = 0,
@@ -123,12 +123,21 @@ class Sprite:
             ValueError: If scale is 0, pixels is not a 2D list, rotation is invalid,
                        or if downscaling factor doesn't evenly divide sprite dimensions
         """
-        if not isinstance(pixels, list) or not all(isinstance(row, list) for row in pixels):
-            raise ValueError("Pixels must be a 2D list")
+        if isinstance(pixels, np.ndarray):
+            if pixels.ndim != 2:
+                raise ValueError("Pixels must be a 2D array 111")
+            if pixels.dtype != np.int8:
+                base = pixels.astype(np.int8, copy=False)
+            else:
+                base = pixels
+        else:
+            if not isinstance(pixels, list) or not all(isinstance(row, list) for row in pixels):
+                raise ValueError("Pixels must be a 2D list or a 2D numpy array")
+            base = np.array(pixels, dtype=np.int8)
 
-        self.pixels = np.array(pixels, dtype=np.int8)
+        self.pixels = base
         if self.pixels.ndim != 2:
-            raise ValueError("Pixels must be a 2D array")
+            raise ValueError("Pixels must be a 2D array 222")
 
         self._name = name if name is not None else str(uuid.uuid4())
         self._x = int(x)
@@ -405,10 +414,7 @@ class Sprite:
         Returns:
             bool: True if the sprite should be visible, False otherwise
         """
-        return self._interaction in {
-            InteractionMode.TANGIBLE,
-            InteractionMode.INTANGIBLE,
-        }
+        return self._interaction == InteractionMode.TANGIBLE or self._interaction == InteractionMode.INTANGIBLE
 
     def set_visible(self, visible: bool) -> "Sprite":
         """Set the sprite's visibility.
@@ -436,10 +442,7 @@ class Sprite:
         Returns:
             bool: True if the sprite should be checked for collisions, False otherwise
         """
-        return self._interaction in {
-            InteractionMode.TANGIBLE,
-            InteractionMode.INVISIBLE,
-        }
+        return self._interaction == InteractionMode.TANGIBLE or self._interaction == InteractionMode.INVISIBLE
 
     def set_collidable(self, collidable: bool) -> "Sprite":
         """Set the sprite's collidable state.
@@ -638,7 +641,7 @@ class Sprite:
         # Create and return new sprite
         return Sprite(
             name=self._name,
-            pixels=merged_pixels.tolist(),
+            pixels=merged_pixels,
             x=min_x,
             y=min_y,
             layer=max(self._layer, other._layer),  # Use higher layer

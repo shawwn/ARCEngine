@@ -14,6 +14,8 @@ from .enums import ActionInput, FrameData, FrameDataRaw, GameAction, GameState
 from .level import Level
 from .sprites import Sprite
 
+MAX_FRAME_PER_ACTION: int = 1000
+
 
 class ARCBaseGame(ABC):
     """Base class for ARCEngine games that manages levels and camera.
@@ -40,6 +42,7 @@ class ARCBaseGame(ABC):
     _win_score: int
     _available_actions: list[int]
     _placeable_sprite: Optional[Sprite]
+    _seed: int
 
     def __init__(
         self,
@@ -49,6 +52,7 @@ class ARCBaseGame(ABC):
         debug: bool = False,
         win_score: int = 1,
         available_actions: list[int] = [1, 2, 3, 4, 5, 6],
+        seed: int = 0,
     ) -> None:
         """Initialize a new game.
 
@@ -89,6 +93,7 @@ class ARCBaseGame(ABC):
         self.set_level(0)
         self._available_actions = available_actions
         self._placeable_sprite = None
+        self._seed = seed
 
     def debug(self, message: str) -> None:
         """Debug mode.
@@ -214,7 +219,12 @@ class ARCBaseGame(ABC):
 
         frame_list: list[ndarray | list[list[int]]] = []
 
+        count = 0
+
         while not self.is_action_complete():
+            if count > MAX_FRAME_PER_ACTION:
+                raise ValueError("Action took too many frames")
+            count += 1
             if self._next_level:
                 self._really_set_next_level()
             else:

@@ -49,6 +49,30 @@ class TestGame(ARCBaseGame):
         return sprite.name != "ignore_me"
 
 
+class TestGameWithTooManyFrames(ARCBaseGame):
+    """Test implementation of TestGameWithTooManyFrames."""
+
+    def __init__(self, game_id: str, levels: list[Level], camera: Camera | None = None, available_actions: list[int] = [1, 2, 3, 4, 5, 6]) -> None:
+        super().__init__(game_id=game_id, levels=levels, camera=camera, available_actions=available_actions)
+        self._step_count = 0
+        self._level_index = -1
+
+    def step(self) -> None:
+        """Step the game, completing after 3 steps."""
+        if self._action_count == 0:
+            self.complete_action()
+        elif self.action.id == GameAction.ACTION7:
+            self.lose()
+            self.complete_action()
+
+    def on_set_level(self, level: Level) -> None:
+        self._level_index = self._current_level_index
+
+    def _is_sprite_clickable_now(self, sprite: Sprite) -> bool:
+        """Check if a sprite is clickable now."""
+        return sprite.name != "ignore_me"
+
+
 class TestGameWithWinScore(ARCBaseGame):
     """Test implementation of TestGame."""
 
@@ -1205,3 +1229,10 @@ class TestARCBaseGame(unittest.TestCase):
 
         pos_44_40_camera = [a for a in valid_camera_actions if a.data.get("x") == 44 and a.data.get("y") == 40]
         self.assertEqual(len(pos_44_40_camera), 1, "Camera-transformed position (44, 40) should be placeable")
+
+    def test_too_many_frames(self):
+        """Test that an error is raised if an action takes too many frames."""
+        game = TestGameWithTooManyFrames("test_too_many_frames", [Level()])
+        with self.assertRaises(ValueError) as ctx:
+            game.perform_action(ActionInput(id=GameAction.ACTION1))
+        self.assertIn("Action took too many frames", str(ctx.exception))

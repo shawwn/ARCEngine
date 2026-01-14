@@ -89,7 +89,7 @@ class TestSprite(unittest.TestCase):
 
         # Test with numpy array (should fail)
         with self.assertRaises(ValueError):
-            Sprite(np.array([[1, 2], [3, 4]]))
+            Sprite(np.array([1, 2]))
 
         # Test with invalid nested structure
         with self.assertRaises(ValueError):
@@ -256,6 +256,14 @@ class TestSprite(unittest.TestCase):
         sprite = Sprite(pixels)
         rendered = sprite.render()
         self.assertTrue(np.array_equal(rendered, np.array(pixels, dtype=np.int8)))
+        self.assertEqual(rendered.dtype, np.int8)
+
+    def test_sprite_from_ndarray(self):
+        """Test sprite rendering without any transformations."""
+        pixels = np.array([[4, 3], [2, 1]], dtype=np.int8)
+        sprite = Sprite(pixels)
+        rendered = sprite.render()
+        self.assertTrue(np.array_equal(rendered, pixels))
         self.assertEqual(rendered.dtype, np.int8)
 
     def test_sprite_render_rotation(self):

@@ -1,6 +1,7 @@
 """Test package for ARCEngine."""
 
 from .test_base_game import TestARCBaseGame
+from .test_benchmarking import TestSysStaticBenchmark
 from .test_camera import TestCamera
 from .test_enums import TestActionInputReasoning
 from .test_interfaces import TestUserDisplays
@@ -14,4 +15,5 @@ __all__ = [
     "TestARCBaseGame",
     "TestUserDisplays",
     "TestActionInputReasoning",
+    "TestSysStaticBenchmark",
 ]
