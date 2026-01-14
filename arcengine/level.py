@@ -10,14 +10,14 @@ from .sprites import Sprite
 
 
 class Level:
-    """A level that manages a collection of sprites with cached ordering and optional static merge."""
+    """A level that manages a collection of sprites."""
 
     _sprites: List[Sprite]
-    _sorted_sprites_desc: List[Sprite]  # cached, sorted by layer desc for get_sprite_at
     _grid_size: Tuple[int, int] | None
     _data: dict[str, Any]
     _name: str
     _placeable_areas: List[PlaceableArea]
+    _need_sort: bool
 
     def __init__(
         self,
@@ -37,23 +37,16 @@ class Level:
             placeable_areas: List of placeable areas in the level
         """
         self._sprites = []
-        self._sorted_sprites_desc = []
         self._grid_size = grid_size
         self._data = data
         self._name = name
         self._placeable_areas = placeable_areas if placeable_areas is not None else []
+        self._need_sort = True
 
         if sprites:
             # Add first (fast path), then do one-time merge+sort.
             self._sprites.extend(sprites)
             self._merge_sys_static_pixel_perfect_on_init()
-        self._resort_cached()
-
-    # ---------------- internal perf helpers ----------------
-
-    def _resort_cached(self) -> None:
-        # get_sprite_at wants topmost first
-        self._sorted_sprites_desc = sorted(self._sprites, key=lambda s: s.layer, reverse=True)
 
     def _merge_sys_static_pixel_perfect_on_init(self) -> None:
         """
@@ -102,33 +95,18 @@ class Level:
 
         self._sprites = others + merged
 
-    # ---------------- public API ----------------
-
     def remove_all_sprites(self) -> None:
         """Remove all sprites from the level."""
         self._sprites = []
-        self._sorted_sprites_desc = []
 
     def add_sprite(self, sprite: Sprite) -> None:
-        """
-        Adds a sprite and keeps cached ordering up to date.
+        """Add a sprite to the level.
 
-        NOTE: Per your request, the sys_static merge is only required on construction.
-        So add_sprite does NOT auto-merge new sys_static PIXEL_PERFECT sprites.
-        (If you want that too, say so and I’ll add an incremental merge path.)
+        Args:
+            sprite: The sprite to add
         """
         self._sprites.append(sprite)
-        # Maintain cached order without full sort:
-        # Insert into _sorted_sprites_desc based on layer descending.
-        # For small sprite counts, a linear insert is faster than sorting every time.
-        layer = sprite.layer
-        i = 0
-        while i < len(self._sorted_sprites_desc) and self._sorted_sprites_desc[i].layer > layer:
-            i += 1
-        # stable: if equal layer, keep earlier sprites earlier; insert after existing same-layer
-        while i < len(self._sorted_sprites_desc) and self._sorted_sprites_desc[i].layer == layer:
-            i += 1
-        self._sorted_sprites_desc.insert(i, sprite)
+        self._need_sort = True
 
     def remove_sprite(self, sprite: Sprite) -> None:
         """Remove a sprite from the level.
@@ -138,12 +116,6 @@ class Level:
         """
         if sprite in self._sprites:
             self._sprites.remove(sprite)
-            # remove from cached list too
-            try:
-                self._sorted_sprites_desc.remove(sprite)
-            except ValueError:
-                # fallback safety
-                self._resort_cached()
 
     def get_sprites(self) -> List[Sprite]:
         """Get all sprites in the level.
@@ -224,7 +196,10 @@ class Level:
             y: The y coordinate
             tag: The tag to search for
         """
-        for sprite in self._sorted_sprites_desc:
+        if self._need_sort:
+            self._sprites = sorted(self._sprites, key=lambda sprite: sprite.layer, reverse=True)
+            self._need_sort = False
+        for sprite in self._sprites:
             if (ignore_collidable or sprite.is_collidable) and x >= sprite.x and y >= sprite.y and x < sprite.x + sprite.width and y < sprite.y + sprite.height:
                 if sprite.blocking == BlockingMode.PIXEL_PERFECT:
                     pixels = sprite.render()
@@ -272,10 +247,4 @@ class Level:
         """
         # Clone each sprite and create new level
         cloned_sprites = [sprite.clone() for sprite in self._sprites]
-        return Level(
-            name=self._name,
-            sprites=cloned_sprites,
-            grid_size=self._grid_size,
-            data=copy.deepcopy(self._data),
-            placeable_areas=self._placeable_areas,
-        )
+        return Level(name=self._name, sprites=cloned_sprites, grid_size=self._grid_size, data=copy.deepcopy(self._data), placeable_areas=self._placeable_areas)
