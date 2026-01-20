@@ -256,7 +256,7 @@ class TestARCBaseGame(unittest.TestCase):
         # Verify the frame data
         self.assertEqual(frame_data.game_id, "test_game")
         self.assertEqual(frame_data.state, GameState.NOT_FINISHED)
-        self.assertEqual(frame_data.score, 0)
+        self.assertEqual(frame_data.levels_completed, 0)
         self.assertEqual(frame_data.action_input, action_input)
 
         # Verify we got 3 frames (one for each step)
@@ -562,7 +562,7 @@ class TestARCBaseGame(unittest.TestCase):
         frame1 = game1.perform_action(action_input)
 
         self.assertEqual(game1.win_score, 1)
-        self.assertEqual(frame1.win_score, 1)
+        self.assertEqual(frame1.win_levels, 1)
 
         # Test providing a max score
         game2 = TestGameWithWinScore("test_game", [level1], win_score=10)
@@ -570,7 +570,7 @@ class TestARCBaseGame(unittest.TestCase):
         frame2 = game2.perform_action(action_input)
 
         self.assertEqual(game2.win_score, 10)
-        self.assertEqual(frame2.win_score, 10)
+        self.assertEqual(frame2.win_levels, 10)
 
     def test_available_actions(self):
         """Test that the available actions are properly set."""
@@ -607,7 +607,8 @@ class TestARCBaseGame(unittest.TestCase):
         # Perform Action 5 to get to the next level
         action_input = ActionInput(id=GameAction.ACTION5)
         frame1 = game.perform_action(action_input)
-        self.assertEqual(frame1.score, 1)
+        self.assertEqual(frame1.levels_completed, 1)
+        self.assertEqual(frame1.win_levels, 2)
         self.assertEqual(game.level_index, 1)
 
         # Perform Action 7 which results in a game over
@@ -619,14 +620,14 @@ class TestARCBaseGame(unittest.TestCase):
         action_input = ActionInput(id=GameAction.RESET)
         frame3 = game.perform_action(action_input)
         self.assertFalse(frame3.full_reset)
-        self.assertEqual(frame3.score, 1)
+        self.assertEqual(frame3.levels_completed, 1)
         self.assertEqual(game.level_index, 1)
 
         # Perform a second Reset which should be a full reset
         action_input = ActionInput(id=GameAction.RESET)
         frame3 = game.perform_action(action_input)
         self.assertTrue(frame3.full_reset)
-        self.assertEqual(frame3.score, 0)
+        self.assertEqual(frame3.levels_completed, 0)
         self.assertEqual(game.level_index, 0)
 
     def test_env_flag_only_allows_level_resets(self):
@@ -647,28 +648,28 @@ class TestARCBaseGame(unittest.TestCase):
             # Perform Action 5 to get to the next level
             action_input = ActionInput(id=GameAction.ACTION5)
             frame1 = game.perform_action(action_input)
-            self.assertEqual(frame1.score, 1)
+            self.assertEqual(frame1.levels_completed, 1)
             self.assertEqual(game.level_index, 1)
 
             # Perform Reset 1 which should not be a full reset
             action_input = ActionInput(id=GameAction.RESET)
             frame3 = game.perform_action(action_input)
             self.assertFalse(frame3.full_reset)
-            self.assertEqual(frame3.score, 1)
+            self.assertEqual(frame3.levels_completed, 1)
             self.assertEqual(game.level_index, 1)
 
             # Perform Reset 2 which should not be a full reset
             action_input = ActionInput(id=GameAction.RESET)
             frame4 = game.perform_action(action_input)
             self.assertFalse(frame4.full_reset)
-            self.assertEqual(frame4.score, 1)
+            self.assertEqual(frame4.levels_completed, 1)
             self.assertEqual(game.level_index, 1)
 
             # Perform Reset 3 which should not be a full reset
             action_input = ActionInput(id=GameAction.RESET)
             frame5 = game.perform_action(action_input)
             self.assertFalse(frame5.full_reset)
-            self.assertEqual(frame5.score, 1)
+            self.assertEqual(frame5.levels_completed, 1)
             self.assertEqual(game.level_index, 1)
 
     def test_get_valid_actions(self):

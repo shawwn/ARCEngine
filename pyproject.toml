@@ -1,6 +1,6 @@
 [project]
 name = "arcengine"
-version = "0.9.1"
+version = "0.9.2"
 description = "A Python library using numpy"
 readme = "README.md"
 requires-python = ">=3.12"

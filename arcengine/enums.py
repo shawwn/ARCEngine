@@ -132,8 +132,8 @@ class FrameData(BaseModel):
     game_id: str = ""
     frame: list[list[list[int]]] = []
     state: GameState = GameState.NOT_PLAYED
-    score: int = Field(0, ge=0, le=254)
-    win_score: int = Field(0, ge=0, le=254)
+    levels_completed: int = Field(0, ge=0, le=254)
+    win_levels: int = Field(0, ge=0, le=254)
     action_input: ActionInput = Field(default_factory=lambda: ActionInput())
     guid: Optional[str] = None
     full_reset: bool = False
@@ -147,8 +147,8 @@ class FrameDataRaw:
     game_id: str = ""
     frame: list[ndarray] = []
     state: GameState = GameState.NOT_PLAYED
-    score: int = 0
-    win_score: int = Field(0, ge=0, le=254)
+    levels_completed: int = 0
+    win_levels: int = Field(0, ge=0, le=254)
     action_input: ActionInput = Field(default_factory=lambda: ActionInput())
     guid: Optional[str] = None
     full_reset: bool = False
