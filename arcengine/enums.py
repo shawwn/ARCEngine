@@ -144,15 +144,15 @@ class FrameData(BaseModel):
 
 
 class FrameDataRaw:
-    game_id: str = ""
-    frame: list[ndarray] = []
-    state: GameState = GameState.NOT_PLAYED
-    levels_completed: int = 0
-    win_levels: int = 0
-    action_input: ActionInput = ActionInput()
-    guid: Optional[str] = None
-    full_reset: bool = False
-    available_actions: list[int] = []
+    game_id: str
+    frame: list[ndarray]
+    state: GameState
+    levels_completed: int
+    win_levels: int
+    action_input: ActionInput
+    guid: Optional[str]
+    full_reset: bool
+    available_actions: list[int]
 
     def __init__(
         self,
