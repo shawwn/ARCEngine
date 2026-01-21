@@ -154,6 +154,28 @@ class FrameDataRaw:
     full_reset: bool = False
     available_actions: list[int] = []
 
+    def __init__(
+        self,
+        game_id: str = "",
+        frame: list[ndarray] | None = None,
+        state: GameState = GameState.NOT_PLAYED,
+        levels_completed: int = 0,
+        win_levels: int = 0,
+        action_input: ActionInput | None = None,
+        guid: Optional[str] = None,
+        full_reset: bool = False,
+        available_actions: list[int] | None = None,
+    ) -> None:
+        self.game_id = game_id
+        self.frame = frame if frame is not None else []
+        self.state = state
+        self.levels_completed = levels_completed
+        self.win_levels = win_levels
+        self.action_input = action_input if action_input is not None else ActionInput()
+        self.guid = guid
+        self.full_reset = full_reset
+        self.available_actions = available_actions if available_actions is not None else []
+
     def is_empty(self) -> bool:
         return len(self.frame) == 0
 
