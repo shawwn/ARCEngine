@@ -148,8 +148,8 @@ class FrameDataRaw:
     frame: list[ndarray] = []
     state: GameState = GameState.NOT_PLAYED
     levels_completed: int = 0
-    win_levels: int = Field(0, ge=0, le=254)
-    action_input: ActionInput = Field(default_factory=lambda: ActionInput())
+    win_levels: int = 0
+    action_input: ActionInput = ActionInput()
     guid: Optional[str] = None
     full_reset: bool = False
     available_actions: list[int] = []
