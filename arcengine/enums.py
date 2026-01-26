@@ -6,10 +6,10 @@ from __future__ import annotations
 
 import json
 from enum import Enum, auto
-from typing import Any, Optional, Type, Union
+from typing import Any, List, Optional, Type, Union
 
 from numpy import ndarray
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, PrivateAttr, field_validator
 
 MAX_REASONING_BYTES = 16 * 1024  # 16 KB guard-rail
 
@@ -142,42 +142,36 @@ class FrameData(BaseModel):
     def is_empty(self) -> bool:
         return len(self.frame) == 0
 
+    def __str__(self) -> str:
+        return self.model_dump_json(indent=2)
 
-class FrameDataRaw:
-    game_id: str
-    frame: list[ndarray]
-    state: GameState
-    levels_completed: int
-    win_levels: int
-    action_input: ActionInput
-    guid: Optional[str]
-    full_reset: bool
-    available_actions: list[int]
 
-    def __init__(
-        self,
-        game_id: str = "",
-        frame: list[ndarray] | None = None,
-        state: GameState = GameState.NOT_PLAYED,
-        levels_completed: int = 0,
-        win_levels: int = 0,
-        action_input: ActionInput | None = None,
-        guid: Optional[str] = None,
-        full_reset: bool = False,
-        available_actions: list[int] | None = None,
-    ) -> None:
-        self.game_id = game_id
-        self.frame = frame if frame is not None else []
-        self.state = state
-        self.levels_completed = levels_completed
-        self.win_levels = win_levels
-        self.action_input = action_input if action_input is not None else ActionInput()
-        self.guid = guid
-        self.full_reset = full_reset
-        self.available_actions = available_actions if available_actions is not None else []
+class FrameDataRaw(BaseModel):
+    game_id: str = ""
+    state: GameState = GameState.NOT_PLAYED
+    levels_completed: int = 0
+    win_levels: int = 0
+    action_input: ActionInput = Field(default_factory=ActionInput)
+    guid: Optional[str] = None
+    full_reset: bool = False
+    available_actions: list[int] = Field(default_factory=list)
+
+    # runtime-only, not validated, not serialized
+    _frame: List[ndarray] = PrivateAttr(default_factory=list)
+
+    @property
+    def frame(self) -> List[ndarray]:
+        return self._frame
+
+    @frame.setter
+    def frame(self, value: List[ndarray]) -> None:
+        self._frame = value
 
     def is_empty(self) -> bool:
-        return len(self.frame) == 0
+        return len(self._frame) == 0
+
+    def __str__(self) -> str:
+        return self.model_dump_json(indent=2)
 
 
 class PlaceableArea:
