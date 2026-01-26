@@ -13,6 +13,7 @@ class Level:
     """A level that manages a collection of sprites."""
 
     _sprites: List[Sprite]
+    _sorted_sprites: List[Sprite] | None  # Sorted High to low
     _grid_size: Tuple[int, int] | None
     _data: dict[str, Any]
     _name: str
@@ -196,10 +197,10 @@ class Level:
             y: The y coordinate
             tag: The tag to search for
         """
-        if self._need_sort:
-            self._sprites = sorted(self._sprites, key=lambda sprite: sprite.layer, reverse=True)
+        if self._need_sort or self._sorted_sprites is None or len(self._sorted_sprites) != len(self._sprites):
+            self._sorted_sprites = sorted(self._sprites, key=lambda sprite: sprite.layer, reverse=True)
             self._need_sort = False
-        for sprite in self._sprites:
+        for sprite in self._sorted_sprites:
             if (ignore_collidable or sprite.is_collidable) and x >= sprite.x and y >= sprite.y and x < sprite.x + sprite.width and y < sprite.y + sprite.height:
                 if sprite.blocking == BlockingMode.PIXEL_PERFECT:
                     pixels = sprite.render()
