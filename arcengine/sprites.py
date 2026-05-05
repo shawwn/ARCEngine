@@ -503,6 +503,12 @@ class Sprite:
                 factor = -self._scale + 1  # -1 -> 2, -2 -> 3, -3 -> 4, etc.
                 result = _downscale_mode(result, factor)
 
+        # Force C-contiguous: np.rot90 returns a non-contiguous view, which
+        # the Cython memoryview path can't bind to (and which hurts cache
+        # locality for tight reads regardless). ascontiguousarray is a no-op
+        # if `result` is already contiguous.
+        result = np.ascontiguousarray(result)
+
         # Mark read-only so accidental mutation by callers raises rather than
         # silently corrupting the cache.
         result.setflags(write=False)

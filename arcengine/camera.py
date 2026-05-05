@@ -9,6 +9,18 @@ import numpy as np
 from .interfaces import RenderableUserDisplay
 from .sprites import Sprite
 
+# Optional Cython extension for the inner blit loop. If the compiled .so is
+# present we use it; otherwise the pure-Python implementation below runs
+# unchanged. Build the extension with `python build_cython.py build_ext --inplace`
+# (see build_cython.py for the manual-cc fallback when setuptools chokes on
+# pyproject.toml).
+try:
+    from ._raw_render_cython import blit_sprites as _cython_blit_sprites  # type: ignore[import-not-found]
+    _HAVE_CYTHON_BLIT = True
+except ImportError:  # pragma: no cover - exercised only when extension absent
+    _cython_blit_sprites = None  # type: ignore[assignment]
+    _HAVE_CYTHON_BLIT = False
+
 
 class Camera:
     """A camera that defines the viewport into the game world."""
@@ -222,14 +234,24 @@ class Camera:
         Returns:
             np.ndarray: The rendered view as a 2D numpy array
         """
-        # Create background array filled with background color
         output = np.full((self._height, self._width), self._background, dtype=np.int8)
 
         if not sprites:
             return output
 
-        # Sort sprites by layer (lower layers first) and filter out non-visible sprites
         sorted_sprites = sorted((s for s in sprites if s.is_visible), key=lambda s: s.layer)
+        if not sorted_sprites:
+            return output
+
+        if _HAVE_CYTHON_BLIT:
+            # Cython fast path: per-sprite Python loop overhead becomes a tight
+            # C loop. Renders the same pixels as the pure-Python branch below.
+            n = len(sorted_sprites)
+            rendered = [s.render() for s in sorted_sprites]
+            xs = np.fromiter((s.x for s in sorted_sprites), dtype=np.int32, count=n)
+            ys = np.fromiter((s.y for s in sorted_sprites), dtype=np.int32, count=n)
+            _cython_blit_sprites(output, rendered, xs, ys, self._x, self._y, self._width, self._height)
+            return output
 
         for sprite in sorted_sprites:
             # Get the sprite's rendered pixels (handles rotation and scaling)

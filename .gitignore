@@ -87,3 +87,7 @@ agents/rl_agent/logs
 wandb
 logs
 llm_logs
+
+# Python build artifacts (Cython extension)
+*.so
+build/
