@@ -88,6 +88,9 @@ class Sprite:
     _blocking: BlockingMode
     _interaction: InteractionMode
     _tags: list[str]
+    # Cached output of render(). Invalidated whenever pixels/rotation/mirror/scale change.
+    # render() output depends only on those; position and layer do not invalidate it.
+    _render_cache: Optional[ndarray]
 
     def __init__(
         self,
@@ -152,7 +155,8 @@ class Sprite:
             self._interaction = _interaction_mode_from(visible, collidable)
         else:
             self._interaction = interaction
-        self._tags = tags
+        self._tags = list(tags) if tags else []
+        self._render_cache = None
 
     def clone(self, new_name: Optional[str] = None) -> "Sprite":
         """Create an independent copy of this sprite.
@@ -182,6 +186,10 @@ class Sprite:
             tags=self._tags.copy(),  # Copy the tags list
         )
 
+    def _invalidate_render_cache(self) -> None:
+        """Drop the cached render() output. Call after any change that affects rendering."""
+        self._render_cache = None
+
     def _set_rotation(self, rotation: int) -> None:
         """Internal method to set rotation with validation.
 
@@ -195,6 +203,7 @@ class Sprite:
         if normalized not in self.VALID_ROTATIONS:
             raise ValueError(f"Rotation must be one of {self.VALID_ROTATIONS}, got {rotation}")
         self.rotation = normalized
+        self._invalidate_render_cache()
 
     def set_rotation(self, rotation: int) -> "Sprite":
         """Set the sprite's rotation to a specific value.
@@ -256,6 +265,7 @@ class Sprite:
                 raise ValueError(f"Array dimensions ({H}, {W}) must be divisible by scale factor {factor}")
 
         self._scale = scale_int
+        self._invalidate_render_cache()
         return self
 
     def adjust_scale(self, delta: int) -> None:
@@ -372,11 +382,13 @@ class Sprite:
     def set_mirror_ud(self, mirror_ud: bool) -> "Sprite":
         """Set the sprite's mirror up/down state."""
         self._mirror_ud = mirror_ud
+        self._invalidate_render_cache()
         return self
 
     def set_mirror_lr(self, mirror_lr: bool) -> "Sprite":
         """Set the sprite's mirror left/right state."""
         self._mirror_lr = mirror_lr
+        self._invalidate_render_cache()
         return self
 
     def set_layer(self, layer: int) -> "Sprite":
@@ -459,6 +471,12 @@ class Sprite:
         Returns:
             np.ndarray: The rendered sprite as a 2D numpy array
         """
+        # Cache: render() output depends only on (pixels, rotation, mirrors, scale).
+        # Callers must not mutate the returned array. Camera._raw_render only reads it.
+        cached = self._render_cache
+        if cached is not None:
+            return cached
+
         # Start with the base pixels
         result = self.pixels.copy()
 
@@ -485,6 +503,10 @@ class Sprite:
                 factor = -self._scale + 1  # -1 -> 2, -2 -> 3, -3 -> 4, etc.
                 result = _downscale_mode(result, factor)
 
+        # Mark read-only so accidental mutation by callers raises rather than
+        # silently corrupting the cache.
+        result.setflags(write=False)
+        self._render_cache = result
         return result
 
     def collides_with(self, other: "Sprite", ignoreMode: bool = False) -> bool:
@@ -582,6 +604,7 @@ class Sprite:
         else:
             # Replace only pixels matching old_color
             self.pixels = np.where(self.pixels == old_color, new_color, self.pixels)
+        self._invalidate_render_cache()
         return self
 
     def merge(self, other: "Sprite") -> "Sprite":

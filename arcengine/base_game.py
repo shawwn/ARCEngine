@@ -10,7 +10,7 @@ import numpy as np
 from numpy import ndarray
 
 from .camera import Camera
-from .enums import ActionInput, FrameData, FrameDataRaw, GameAction, GameState
+from .enums import ActionInput, FrameData, FrameDataRaw, GameAction, GameState, RenderMode
 from .level import Level
 from .sprites import Sprite
 
@@ -186,7 +186,12 @@ class ARCBaseGame(ABC):
         return self._current_level_index
 
     @final
-    def perform_action(self, action_input: ActionInput, raw: bool = False) -> FrameData | FrameDataRaw:
+    def perform_action(
+        self,
+        action_input: ActionInput,
+        raw: bool = False,
+        render_mode: RenderMode = RenderMode.ALL,
+    ) -> FrameData | FrameDataRaw:
         """Perform an action and return the resulting frame data.
 
         DO NOT OVERRIDE THIS METHOD, Your Game Logic should be in step()
@@ -197,6 +202,14 @@ class ARCBaseGame(ABC):
 
         Args:
             action_input: The action to perform
+            raw: If True, return numpy arrays in `frame` (no JSON-serializable
+                conversion). Required for downstream code that wants to avoid
+                the per-frame `ndarray.tolist()` cost.
+            render_mode: Controls which frames are rendered. ALL renders every
+                step (default, matches pre-existing behavior). FINAL renders
+                only the last frame (right for one-observation-per-action
+                agent runs). NONE skips rendering entirely (right for pure
+                sims that don't consume observations).
 
         Returns:
             FrameData: The resulting frame data
@@ -229,26 +242,39 @@ class ARCBaseGame(ABC):
                 self._really_set_next_level()
             else:
                 self.step()
+            if render_mode == RenderMode.ALL:
+                frame = self.camera.render(self.current_level.get_sprites())
+                if raw:
+                    frame_list.append(frame)
+                else:
+                    frame_list.append(frame.tolist())
+
+        # FINAL: render exactly one frame after the action loop completes.
+        if render_mode == RenderMode.FINAL:
             frame = self.camera.render(self.current_level.get_sprites())
             if raw:
                 frame_list.append(frame)
             else:
                 frame_list.append(frame.tolist())
 
-        # Create and return FrameData
+        # Create and return FrameData. We use model_construct() to skip per-field
+        # validation: every value here is already typed by the engine and not
+        # user-supplied, so paying for pydantic validation on every action is
+        # pure overhead.
         if raw:
-            frame_raw = FrameDataRaw()
-            frame_raw.game_id = self._game_id
+            frame_raw = FrameDataRaw.model_construct(
+                game_id=self._game_id,
+                state=self._state,
+                levels_completed=self._score,
+                win_levels=self._win_score,
+                action_input=action_input,
+                full_reset=self._full_reset,
+                available_actions=self._available_actions,
+            )
             frame_raw.frame = frame_list
-            frame_raw.state = self._state
-            frame_raw.levels_completed = self._score
-            frame_raw.win_levels = self._win_score
-            frame_raw.action_input = action_input
-            frame_raw.full_reset = self._full_reset
-            frame_raw.available_actions = self._available_actions
             return frame_raw
 
-        return FrameData(
+        return FrameData.model_construct(
             game_id=self._game_id,
             frame=frame_list,
             state=self._state,

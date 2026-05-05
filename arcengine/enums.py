@@ -38,6 +38,22 @@ class GameState(str, Enum):
     GAME_OVER = "GAME_OVER"
 
 
+class RenderMode(str, Enum):
+    """Controls how many frames perform_action() renders.
+
+    ALL    — render every step in the loop (default; matches pre-existing behavior).
+             Use for human play / replays where intermediate animation frames matter.
+    FINAL  — render only the last frame of the action.
+             Use for agent runs that consume one observation per action.
+    NONE   — skip rendering entirely.
+             Use for pure simulations where observations aren't consumed.
+    """
+
+    ALL = "ALL"
+    FINAL = "FINAL"
+    NONE = "NONE"
+
+
 class SimpleAction(BaseModel):
     game_id: str = ""
 
