@@ -802,6 +802,42 @@ pre-commit run --all-files
 Note: by default these tools run automatically before `git commit`. It's also recommended
 to set up `ruff` inside your IDE (https://docs.astral.sh/ruff/editors/setup/).
 
+### Optional Cython extension (faster rendering)
+
+`Camera._raw_render` has a Cython port that runs the per-sprite blit loop in C
+instead of Python. It's **opt-in**: if the compiled extension isn't present,
+the engine falls back to a pure-Python implementation that produces
+byte-identical output.
+
+To build the extension in place:
+
+```bash
+uv pip install cython
+uv run python build_cython.py build_ext --inplace
+```
+
+(If your system's `setuptools` rejects the project's `pyproject.toml`, see the
+docstring in `build_cython.py` for a manual `cc` invocation that bypasses it.)
+
+After building, `arcengine/_raw_render_cython.<platform>.so` exists alongside
+the source and `arcengine.camera` will import it automatically.
+
+Measured impact on this branch (Apple Silicon, single thread, Python 3.12,
+best-of-5 of 2000 actions per trial; see `bench/throughput.py`):
+
+| Workload                            | Pure-Python  | Cython       | Speedup |
+|-------------------------------------|--------------|--------------|---------|
+| simple_maze, raw=True, ALL          | 45,239 a/s   | 60,500 a/s   | 1.34x   |
+| dense (28 sprites), raw=True, ALL   | 24,787 a/s   | 63,800 a/s   | 2.57x   |
+| RenderMode.NONE workloads           | unchanged    | unchanged    | 1.0x    |
+
+`RenderMode.NONE` is unchanged because the Cython path is in the render code
+only — sims that don't render don't see this win.
+
+The Cython source is `arcengine/_raw_render_cython.pyx`. The generated C
+(`arcengine/_raw_render_cython.c`) is committed so other platforms can build
+without needing Cython itself installed; the compiled `.so` is gitignored.
+
 ## Contributions
 
 This project does not accept external contributions.
