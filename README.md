@@ -75,13 +75,14 @@ Set the current level by name.
 - `name`: The level name to match
 - Raises `ValueError` if no level matches
 
-##### `perform_action(action_input, raw=False)`
+##### `perform_action(action_input, raw=False, render_mode=RenderMode.ALL)`
 Perform an action and return the resulting frame data.
 
-This method runs `step()` in a loop until `complete_action()` is called, rendering each frame. It should not be overridden; implement game logic in `step()`.
+This method runs `step()` in a loop until `complete_action()` is called, rendering frames according to `render_mode`. It should not be overridden; implement game logic in `step()`.
 
 - `action_input`: The action to perform
-- `raw`: If True, returns `FrameDataRaw` with numpy frames
+- `raw`: If True, returns `FrameDataRaw` with numpy frames (no per-frame `tolist()` conversion)
+- `render_mode`: Controls which frames are rendered (see `RenderMode` below). Default `ALL` matches pre-existing behavior.
 - Returns: `FrameData` or `FrameDataRaw`
 - Raises `ValueError` if an action exceeds 1000 frames
 
@@ -198,6 +199,23 @@ Common client/UI conventions:
 - `ACTION4`: Right or D or 4
 - `ACTION5`: Spacebar
 - `ACTION7`: Z - Used for Undo
+
+#### `RenderMode`
+Enum controlling how many frames `perform_action()` renders. Lets callers opt out of rendering work they don't need.
+
+- `ALL` (default): render every step in the action loop. Match pre-existing behavior — use for human play and replays where intermediate animation frames matter.
+- `FINAL`: render only the last frame of the action. Right for one-observation-per-action agent runs.
+- `NONE`: skip rendering entirely. Right for pure simulations where observations aren't consumed (e.g., training data generation, exploration).
+
+```python
+from arcengine import ActionInput, GameAction, RenderMode
+
+# Headless sim: no rendering
+result = game.perform_action(ActionInput(id=GameAction.ACTION1), raw=True, render_mode=RenderMode.NONE)
+
+# Agent run: only the final frame
+result = game.perform_action(ActionInput(id=GameAction.ACTION1), raw=True, render_mode=RenderMode.FINAL)
+```
 
 ### `Sprite`
 A 2D sprite with position, rotation, scale, and collision behavior.
@@ -394,7 +412,7 @@ Set the sprite's name.
 ##### `render()`
 Render the sprite with current scale and rotation.
 
-- Returns: A 2D numpy array representing the rendered sprite
+- Returns: A 2D numpy array representing the rendered sprite. The result is **read-only** (`flags.writeable == False`); the engine caches it internally and shares the same array across calls until pixels/rotation/mirror/scale change. Callers that need a mutable copy should `.copy()` it.
 - Raises `ValueError` if downscaling factor doesn't evenly divide the sprite dimensions
 
 ##### `collides_with(other, ignoreMode=False)`
