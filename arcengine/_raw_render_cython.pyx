@@ -27,9 +27,7 @@ cimport cython
 @cython.wraparound(False)
 def blit_sprites(
     cnp.int8_t[:, ::1] output,
-    list rendered_pixels,         # list of 2D int8 ndarrays, one per sprite (already in layer order)
-    cnp.int32_t[::1] xs,          # sprite world x positions
-    cnp.int32_t[::1] ys,          # sprite world y positions
+    list sorted_sprites,           # list of Sprite objects in layer order
     int cam_x,
     int cam_y,
     int view_w,
@@ -37,37 +35,36 @@ def blit_sprites(
 ):
     """Blit a list of sprites into `output` with per-pixel transparency.
 
-    Equivalent to the per-sprite loop in Camera._raw_render but with the
-    bbox/clip math and the masked write running in C-speed Cython instead of
-    Python. Negative pixel values are treated as transparent.
+    Takes the sprite list directly (rather than pre-extracted xs/ys arrays
+    plus rendered-pixel list) so the caller doesn't pay the np.fromiter cost
+    twice per frame. Sprite attribute access from Cython is still
+    Python-level, but it's the same number of attr lookups as before — what
+    we save is the int32 array allocation and per-element fromiter dispatch.
 
-    Arguments:
-        output: 2D int8 framebuffer of shape (view_h, view_w), pre-filled with
-                background color. Mutated in place.
-        rendered_pixels: list of 2D int8 ndarrays (sprite.render() outputs).
-                Order matters: lower-layer sprites first, painted over by later.
-        xs, ys: sprite world positions.
-        cam_x, cam_y: camera origin in world coordinates.
-        view_w, view_h: framebuffer size.
+    Negative pixel values are treated as transparent.
     """
-    cdef Py_ssize_t n = xs.shape[0]
+    cdef Py_ssize_t n = len(sorted_sprites)
     cdef Py_ssize_t i
     cdef int rel_x, rel_y, sprite_w, sprite_h
     cdef int dx0, dx1, dy0, dy1
     cdef int sx0, sy0
     cdef int dy, dx, sy
+    cdef int sprite_x, sprite_y
     cdef cnp.int8_t pixel
     # `const` lets the memoryview bind to read-only arrays (Sprite.render()
     # marks its cache read-only to enforce no-mutation contract).
     cdef const cnp.int8_t[:, ::1] sp
 
     for i in range(n):
-        sp = rendered_pixels[i]
+        sprite = sorted_sprites[i]
+        sp = sprite.render()
         sprite_h = sp.shape[0]
         sprite_w = sp.shape[1]
 
-        rel_x = xs[i] - cam_x
-        rel_y = ys[i] - cam_y
+        sprite_x = sprite._x
+        sprite_y = sprite._y
+        rel_x = sprite_x - cam_x
+        rel_y = sprite_y - cam_y
 
         # Destination range (in output) clipped to viewport
         dx0 = rel_x if rel_x > 0 else 0

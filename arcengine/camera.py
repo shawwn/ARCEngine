@@ -246,11 +246,7 @@ class Camera:
         if _HAVE_CYTHON_BLIT:
             # Cython fast path: per-sprite Python loop overhead becomes a tight
             # C loop. Renders the same pixels as the pure-Python branch below.
-            n = len(sorted_sprites)
-            rendered = [s.render() for s in sorted_sprites]
-            xs = np.fromiter((s.x for s in sorted_sprites), dtype=np.int32, count=n)
-            ys = np.fromiter((s.y for s in sorted_sprites), dtype=np.int32, count=n)
-            _cython_blit_sprites(output, rendered, xs, ys, self._x, self._y, self._width, self._height)
+            _cython_blit_sprites(output, sorted_sprites, self._x, self._y, self._width, self._height)
             return output
 
         for sprite in sorted_sprites:

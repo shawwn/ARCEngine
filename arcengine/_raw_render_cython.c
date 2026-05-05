@@ -2948,9 +2948,6 @@ static int __Pyx_ValidateAndInit_memviewslice(
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_5numpy_int8_t(PyObject *, int writable_flag);
 
 /* ObjectToMemviewSlice.proto */
-static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_5numpy_int32_t(PyObject *, int writable_flag);
-
-/* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_5numpy_int8_t__const__(PyObject *, int writable_flag);
 
 /* RealImag.proto */
@@ -3321,7 +3318,6 @@ static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 /* #### Code section: typeinfo ### */
 static const __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_int8_t = { "int8_t", NULL, sizeof(__pyx_t_5numpy_int8_t), { 0 }, 0, __PYX_IS_UNSIGNED(__pyx_t_5numpy_int8_t) ? 'U' : 'I', __PYX_IS_UNSIGNED(__pyx_t_5numpy_int8_t), 0 };
-static const __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t = { "int32_t", NULL, sizeof(__pyx_t_5numpy_int32_t), { 0 }, 0, __PYX_IS_UNSIGNED(__pyx_t_5numpy_int32_t) ? 'U' : 'I', __PYX_IS_UNSIGNED(__pyx_t_5numpy_int32_t), 0 };
 static const __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_int8_t__const__ = { "const int8_t", NULL, sizeof(__pyx_t_5numpy_int8_t const ), { 0 }, 0, __PYX_IS_UNSIGNED(__pyx_t_5numpy_int8_t const ) ? 'U' : 'I', __PYX_IS_UNSIGNED(__pyx_t_5numpy_int8_t const ), 0 };
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "arcengine._raw_render_cython"
@@ -3381,7 +3377,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_output, PyObject *__pyx_v_rendered_pixels, __Pyx_memviewslice __pyx_v_xs, __Pyx_memviewslice __pyx_v_ys, int __pyx_v_cam_x, int __pyx_v_cam_y, int __pyx_v_view_w, int __pyx_v_view_h); /* proto */
+static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_output, PyObject *__pyx_v_sorted_sprites, int __pyx_v_cam_x, int __pyx_v_cam_y, int __pyx_v_view_w, int __pyx_v_view_h); /* proto */
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3436,7 +3432,7 @@ typedef struct {
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[144];
+  PyObject *__pyx_string_tab[148];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -3594,34 +3590,38 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_register __pyx_string_tab[113]
 #define __pyx_n_u_rel_x __pyx_string_tab[114]
 #define __pyx_n_u_rel_y __pyx_string_tab[115]
-#define __pyx_n_u_rendered_pixels __pyx_string_tab[116]
+#define __pyx_n_u_render __pyx_string_tab[116]
 #define __pyx_n_u_set_name __pyx_string_tab[117]
 #define __pyx_n_u_setdefault __pyx_string_tab[118]
 #define __pyx_n_u_setstate __pyx_string_tab[119]
 #define __pyx_n_u_setstate_cython __pyx_string_tab[120]
 #define __pyx_n_u_shape __pyx_string_tab[121]
 #define __pyx_n_u_size __pyx_string_tab[122]
-#define __pyx_n_u_sp __pyx_string_tab[123]
-#define __pyx_n_u_sprite_h __pyx_string_tab[124]
-#define __pyx_n_u_sprite_w __pyx_string_tab[125]
-#define __pyx_n_u_start __pyx_string_tab[126]
-#define __pyx_n_u_step __pyx_string_tab[127]
-#define __pyx_n_u_stop __pyx_string_tab[128]
-#define __pyx_n_u_struct __pyx_string_tab[129]
-#define __pyx_n_u_sx0 __pyx_string_tab[130]
-#define __pyx_n_u_sy __pyx_string_tab[131]
-#define __pyx_n_u_sy0 __pyx_string_tab[132]
-#define __pyx_n_u_test __pyx_string_tab[133]
-#define __pyx_n_u_unpack __pyx_string_tab[134]
-#define __pyx_n_u_update __pyx_string_tab[135]
-#define __pyx_n_u_values __pyx_string_tab[136]
-#define __pyx_n_u_view_h __pyx_string_tab[137]
-#define __pyx_n_u_view_w __pyx_string_tab[138]
-#define __pyx_n_u_x __pyx_string_tab[139]
-#define __pyx_n_u_xs __pyx_string_tab[140]
-#define __pyx_n_u_ys __pyx_string_tab[141]
-#define __pyx_kp_b_iso88591_6_U_1__AQ_2V1A_2V1A_3b_3b_ivRwa __pyx_string_tab[142]
-#define __pyx_n_b_O __pyx_string_tab[143]
+#define __pyx_n_u_sorted_sprites __pyx_string_tab[123]
+#define __pyx_n_u_sp __pyx_string_tab[124]
+#define __pyx_n_u_sprite __pyx_string_tab[125]
+#define __pyx_n_u_sprite_h __pyx_string_tab[126]
+#define __pyx_n_u_sprite_w __pyx_string_tab[127]
+#define __pyx_n_u_sprite_x __pyx_string_tab[128]
+#define __pyx_n_u_sprite_y __pyx_string_tab[129]
+#define __pyx_n_u_start __pyx_string_tab[130]
+#define __pyx_n_u_step __pyx_string_tab[131]
+#define __pyx_n_u_stop __pyx_string_tab[132]
+#define __pyx_n_u_struct __pyx_string_tab[133]
+#define __pyx_n_u_sx0 __pyx_string_tab[134]
+#define __pyx_n_u_sy __pyx_string_tab[135]
+#define __pyx_n_u_sy0 __pyx_string_tab[136]
+#define __pyx_n_u_test __pyx_string_tab[137]
+#define __pyx_n_u_unpack __pyx_string_tab[138]
+#define __pyx_n_u_update __pyx_string_tab[139]
+#define __pyx_n_u_values __pyx_string_tab[140]
+#define __pyx_n_u_view_h __pyx_string_tab[141]
+#define __pyx_n_u_view_w __pyx_string_tab[142]
+#define __pyx_n_u_x __pyx_string_tab[143]
+#define __pyx_n_u_x_2 __pyx_string_tab[144]
+#define __pyx_n_u_y __pyx_string_tab[145]
+#define __pyx_kp_b_iso88591_1A_U_1_q_V7_2V1A_2V1A_6_6_1_1_i __pyx_string_tab[146]
+#define __pyx_n_b_O __pyx_string_tab[147]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -3667,7 +3667,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<144; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<148; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -3718,7 +3718,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<144; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<148; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -18736,7 +18736,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_9arcengine_18_raw_render_cython_blit_sprites, "Blit a list of sprites into `output` with per-pixel transparency.\n\n    Equivalent to the per-sprite loop in Camera._raw_render but with the\n    bbox/clip math and the masked write running in C-speed Cython instead of\n    Python. Negative pixel values are treated as transparent.\n\n    Arguments:\n        output: 2D int8 framebuffer of shape (view_h, view_w), pre-filled with\n                background color. Mutated in place.\n        rendered_pixels: list of 2D int8 ndarrays (sprite.render() outputs).\n                Order matters: lower-layer sprites first, painted over by later.\n        xs, ys: sprite world positions.\n        cam_x, cam_y: camera origin in world coordinates.\n        view_w, view_h: framebuffer size.\n    ");
+PyDoc_STRVAR(__pyx_doc_9arcengine_18_raw_render_cython_blit_sprites, "Blit a list of sprites into `output` with per-pixel transparency.\n\n    Takes the sprite list directly (rather than pre-extracted xs/ys arrays\n    plus rendered-pixel list) so the caller doesn't pay the np.fromiter cost\n    twice per frame. Sprite attribute access from Cython is still\n    Python-level, but it's the same number of attr lookups as before \342\200\224 what\n    we save is the int32 array allocation and per-element fromiter dispatch.\n\n    Negative pixel values are treated as transparent.\n    ");
 static PyMethodDef __pyx_mdef_9arcengine_18_raw_render_cython_1blit_sprites = {"blit_sprites", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9arcengine_18_raw_render_cython_1blit_sprites, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_9arcengine_18_raw_render_cython_blit_sprites};
 static PyObject *__pyx_pw_9arcengine_18_raw_render_cython_1blit_sprites(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -18746,9 +18746,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
   __Pyx_memviewslice __pyx_v_output = { 0, 0, { 0 }, { 0 }, { 0 } };
-  PyObject *__pyx_v_rendered_pixels = 0;
-  __Pyx_memviewslice __pyx_v_xs = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_v_ys = { 0, 0, { 0 }, { 0 }, { 0 } };
+  PyObject *__pyx_v_sorted_sprites = 0;
   int __pyx_v_cam_x;
   int __pyx_v_cam_y;
   int __pyx_v_view_w;
@@ -18757,7 +18755,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[8] = {0,0,0,0,0,0,0,0};
+  PyObject* values[6] = {0,0,0,0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -18773,19 +18771,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_output,&__pyx_mstate_global->__pyx_n_u_rendered_pixels,&__pyx_mstate_global->__pyx_n_u_xs,&__pyx_mstate_global->__pyx_n_u_ys,&__pyx_mstate_global->__pyx_n_u_cam_x,&__pyx_mstate_global->__pyx_n_u_cam_y,&__pyx_mstate_global->__pyx_n_u_view_w,&__pyx_mstate_global->__pyx_n_u_view_h,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_output,&__pyx_mstate_global->__pyx_n_u_sorted_sprites,&__pyx_mstate_global->__pyx_n_u_cam_x,&__pyx_mstate_global->__pyx_n_u_cam_y,&__pyx_mstate_global->__pyx_n_u_view_w,&__pyx_mstate_global->__pyx_n_u_view_h,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
     if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 26, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
-        case  8:
-        values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 26, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  7:
-        values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 26, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
         if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 26, __pyx_L3_error)
@@ -18815,10 +18805,10 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
       if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "blit_sprites", 0) < (0)) __PYX_ERR(0, 26, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 8; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("blit_sprites", 1, 8, 8, i); __PYX_ERR(0, 26, __pyx_L3_error) }
+      for (Py_ssize_t i = __pyx_nargs; i < 6; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("blit_sprites", 1, 6, 6, i); __PYX_ERR(0, 26, __pyx_L3_error) }
       }
-    } else if (unlikely(__pyx_nargs != 8)) {
+    } else if (unlikely(__pyx_nargs != 6)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
@@ -18833,23 +18823,17 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 26, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
       if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 26, __pyx_L3_error)
-      values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 26, __pyx_L3_error)
-      values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 26, __pyx_L3_error)
     }
     __pyx_v_output = __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_5numpy_int8_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_output.memview)) __PYX_ERR(0, 29, __pyx_L3_error)
-    __pyx_v_rendered_pixels = ((PyObject*)values[1]);
-    __pyx_v_xs = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_5numpy_int32_t(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_xs.memview)) __PYX_ERR(0, 31, __pyx_L3_error)
-    __pyx_v_ys = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_5numpy_int32_t(values[3], PyBUF_WRITABLE); if (unlikely(!__pyx_v_ys.memview)) __PYX_ERR(0, 32, __pyx_L3_error)
-    __pyx_v_cam_x = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_cam_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 33, __pyx_L3_error)
-    __pyx_v_cam_y = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_cam_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L3_error)
-    __pyx_v_view_w = __Pyx_PyLong_As_int(values[6]); if (unlikely((__pyx_v_view_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 35, __pyx_L3_error)
-    __pyx_v_view_h = __Pyx_PyLong_As_int(values[7]); if (unlikely((__pyx_v_view_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L3_error)
+    __pyx_v_sorted_sprites = ((PyObject*)values[1]);
+    __pyx_v_cam_x = __Pyx_PyLong_As_int(values[2]); if (unlikely((__pyx_v_cam_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 31, __pyx_L3_error)
+    __pyx_v_cam_y = __Pyx_PyLong_As_int(values[3]); if (unlikely((__pyx_v_cam_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L3_error)
+    __pyx_v_view_w = __Pyx_PyLong_As_int(values[4]); if (unlikely((__pyx_v_view_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 33, __pyx_L3_error)
+    __pyx_v_view_h = __Pyx_PyLong_As_int(values[5]); if (unlikely((__pyx_v_view_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("blit_sprites", 1, 8, 8, __pyx_nargs); __PYX_ERR(0, 26, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("blit_sprites", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 26, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -18857,14 +18841,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     Py_XDECREF(values[__pyx_temp]);
   }
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_output, 1);
-  __PYX_XCLEAR_MEMVIEW(&__pyx_v_xs, 1);
-  __PYX_XCLEAR_MEMVIEW(&__pyx_v_ys, 1);
   __Pyx_AddTraceback("arcengine._raw_render_cython.blit_sprites", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_rendered_pixels), (&PyList_Type), 1, "rendered_pixels", 1))) __PYX_ERR(0, 30, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(__pyx_self, __pyx_v_output, __pyx_v_rendered_pixels, __pyx_v_xs, __pyx_v_ys, __pyx_v_cam_x, __pyx_v_cam_y, __pyx_v_view_w, __pyx_v_view_h);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_sorted_sprites), (&PyList_Type), 1, "sorted_sprites", 1))) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(__pyx_self, __pyx_v_output, __pyx_v_sorted_sprites, __pyx_v_cam_x, __pyx_v_cam_y, __pyx_v_view_w, __pyx_v_view_h);
 
   /* function exit code */
   goto __pyx_L0;
@@ -18880,13 +18862,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   __pyx_L7_cleaned_up:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_output, 1);
-  __PYX_XCLEAR_MEMVIEW(&__pyx_v_xs, 1);
-  __PYX_XCLEAR_MEMVIEW(&__pyx_v_ys, 1);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_output, PyObject *__pyx_v_rendered_pixels, __Pyx_memviewslice __pyx_v_xs, __Pyx_memviewslice __pyx_v_ys, int __pyx_v_cam_x, int __pyx_v_cam_y, int __pyx_v_view_w, int __pyx_v_view_h) {
+static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_output, PyObject *__pyx_v_sorted_sprites, int __pyx_v_cam_x, int __pyx_v_cam_y, int __pyx_v_view_w, int __pyx_v_view_h) {
   Py_ssize_t __pyx_v_n;
   Py_ssize_t __pyx_v_i;
   int __pyx_v_rel_x;
@@ -18902,136 +18882,194 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
   int __pyx_v_dy;
   int __pyx_v_dx;
   int __pyx_v_sy;
+  int __pyx_v_sprite_x;
+  int __pyx_v_sprite_y;
   __pyx_t_5numpy_int8_t __pyx_v_pixel;
   __Pyx_memviewslice __pyx_v_sp = { 0, 0, { 0 }, { 0 }, { 0 } };
+  PyObject *__pyx_v_sprite = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
   Py_ssize_t __pyx_t_2;
   Py_ssize_t __pyx_t_3;
-  __Pyx_memviewslice __pyx_t_4 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_5;
-  int __pyx_t_6;
-  int __pyx_t_7;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  __Pyx_memviewslice __pyx_t_7 = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_t_8;
   int __pyx_t_9;
   int __pyx_t_10;
   int __pyx_t_11;
   int __pyx_t_12;
   int __pyx_t_13;
-  Py_ssize_t __pyx_t_14;
+  int __pyx_t_14;
+  int __pyx_t_15;
+  Py_ssize_t __pyx_t_16;
+  Py_ssize_t __pyx_t_17;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("blit_sprites", 0);
 
-  /* "arcengine/_raw_render_cython.pyx":53
- *         view_w, view_h: framebuffer size.
+  /* "arcengine/_raw_render_cython.pyx":46
+ *     Negative pixel values are treated as transparent.
  *     """
- *     cdef Py_ssize_t n = xs.shape[0]             # <<<<<<<<<<<<<<
+ *     cdef Py_ssize_t n = len(sorted_sprites)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t i
  *     cdef int rel_x, rel_y, sprite_w, sprite_h
 */
-  __pyx_v_n = (__pyx_v_xs.shape[0]);
+  if (unlikely(__pyx_v_sorted_sprites == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 46, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_PyList_GET_SIZE(__pyx_v_sorted_sprites); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_v_n = __pyx_t_1;
 
-  /* "arcengine/_raw_render_cython.pyx":64
+  /* "arcengine/_raw_render_cython.pyx":58
  *     cdef const cnp.int8_t[:, ::1] sp
  * 
  *     for i in range(n):             # <<<<<<<<<<<<<<
- *         sp = rendered_pixels[i]
- *         sprite_h = sp.shape[0]
+ *         sprite = sorted_sprites[i]
+ *         sp = sprite.render()
 */
   __pyx_t_1 = __pyx_v_n;
   __pyx_t_2 = __pyx_t_1;
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "arcengine/_raw_render_cython.pyx":65
+    /* "arcengine/_raw_render_cython.pyx":59
  * 
  *     for i in range(n):
- *         sp = rendered_pixels[i]             # <<<<<<<<<<<<<<
+ *         sprite = sorted_sprites[i]             # <<<<<<<<<<<<<<
+ *         sp = sprite.render()
+ *         sprite_h = sp.shape[0]
+*/
+    if (unlikely(__pyx_v_sorted_sprites == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 59, __pyx_L1_error)
+    }
+    __pyx_t_4 = __Pyx_PyList_GET_ITEM(__pyx_v_sorted_sprites, __pyx_v_i);
+    __Pyx_INCREF(__pyx_t_4);
+    __Pyx_XDECREF_SET(__pyx_v_sprite, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "arcengine/_raw_render_cython.pyx":60
+ *     for i in range(n):
+ *         sprite = sorted_sprites[i]
+ *         sp = sprite.render()             # <<<<<<<<<<<<<<
  *         sprite_h = sp.shape[0]
  *         sprite_w = sp.shape[1]
 */
-    if (unlikely(__pyx_v_rendered_pixels == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_5 = __pyx_v_sprite;
+    __Pyx_INCREF(__pyx_t_5);
+    __pyx_t_6 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
+      __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_render, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
     }
-    __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_5numpy_int8_t__const__(__Pyx_PyList_GET_ITEM(__pyx_v_rendered_pixels, __pyx_v_i), 0); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_5numpy_int8_t__const__(__pyx_t_4, 0); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __PYX_XCLEAR_MEMVIEW(&__pyx_v_sp, 1);
-    __pyx_v_sp = __pyx_t_4;
-    __pyx_t_4.memview = NULL;
-    __pyx_t_4.data = NULL;
+    __pyx_v_sp = __pyx_t_7;
+    __pyx_t_7.memview = NULL;
+    __pyx_t_7.data = NULL;
 
-    /* "arcengine/_raw_render_cython.pyx":66
- *     for i in range(n):
- *         sp = rendered_pixels[i]
+    /* "arcengine/_raw_render_cython.pyx":61
+ *         sprite = sorted_sprites[i]
+ *         sp = sprite.render()
  *         sprite_h = sp.shape[0]             # <<<<<<<<<<<<<<
  *         sprite_w = sp.shape[1]
  * 
 */
     __pyx_v_sprite_h = (__pyx_v_sp.shape[0]);
 
-    /* "arcengine/_raw_render_cython.pyx":67
- *         sp = rendered_pixels[i]
+    /* "arcengine/_raw_render_cython.pyx":62
+ *         sp = sprite.render()
  *         sprite_h = sp.shape[0]
  *         sprite_w = sp.shape[1]             # <<<<<<<<<<<<<<
  * 
- *         rel_x = xs[i] - cam_x
+ *         sprite_x = sprite._x
 */
     __pyx_v_sprite_w = (__pyx_v_sp.shape[1]);
 
-    /* "arcengine/_raw_render_cython.pyx":69
+    /* "arcengine/_raw_render_cython.pyx":64
  *         sprite_w = sp.shape[1]
  * 
- *         rel_x = xs[i] - cam_x             # <<<<<<<<<<<<<<
- *         rel_y = ys[i] - cam_y
+ *         sprite_x = sprite._x             # <<<<<<<<<<<<<<
+ *         sprite_y = sprite._y
+ *         rel_x = sprite_x - cam_x
+*/
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_mstate_global->__pyx_n_u_x_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_v_sprite_x = __pyx_t_8;
+
+    /* "arcengine/_raw_render_cython.pyx":65
+ * 
+ *         sprite_x = sprite._x
+ *         sprite_y = sprite._y             # <<<<<<<<<<<<<<
+ *         rel_x = sprite_x - cam_x
+ *         rel_y = sprite_y - cam_y
+*/
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_sprite, __pyx_mstate_global->__pyx_n_u_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 65, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_v_sprite_y = __pyx_t_8;
+
+    /* "arcengine/_raw_render_cython.pyx":66
+ *         sprite_x = sprite._x
+ *         sprite_y = sprite._y
+ *         rel_x = sprite_x - cam_x             # <<<<<<<<<<<<<<
+ *         rel_y = sprite_y - cam_y
  * 
 */
-    __pyx_t_5 = __pyx_v_i;
-    __pyx_v_rel_x = ((*((__pyx_t_5numpy_int32_t *) ( /* dim=0 */ ((char *) (((__pyx_t_5numpy_int32_t *) __pyx_v_xs.data) + __pyx_t_5)) ))) - __pyx_v_cam_x);
+    __pyx_v_rel_x = (__pyx_v_sprite_x - __pyx_v_cam_x);
 
-    /* "arcengine/_raw_render_cython.pyx":70
- * 
- *         rel_x = xs[i] - cam_x
- *         rel_y = ys[i] - cam_y             # <<<<<<<<<<<<<<
+    /* "arcengine/_raw_render_cython.pyx":67
+ *         sprite_y = sprite._y
+ *         rel_x = sprite_x - cam_x
+ *         rel_y = sprite_y - cam_y             # <<<<<<<<<<<<<<
  * 
  *         # Destination range (in output) clipped to viewport
 */
-    __pyx_t_5 = __pyx_v_i;
-    __pyx_v_rel_y = ((*((__pyx_t_5numpy_int32_t *) ( /* dim=0 */ ((char *) (((__pyx_t_5numpy_int32_t *) __pyx_v_ys.data) + __pyx_t_5)) ))) - __pyx_v_cam_y);
+    __pyx_v_rel_y = (__pyx_v_sprite_y - __pyx_v_cam_y);
 
-    /* "arcengine/_raw_render_cython.pyx":73
+    /* "arcengine/_raw_render_cython.pyx":70
  * 
  *         # Destination range (in output) clipped to viewport
  *         dx0 = rel_x if rel_x > 0 else 0             # <<<<<<<<<<<<<<
  *         dy0 = rel_y if rel_y > 0 else 0
  *         dx1 = rel_x + sprite_w
 */
-    __pyx_t_7 = (__pyx_v_rel_x > 0);
-    if (__pyx_t_7) {
-      __pyx_t_6 = __pyx_v_rel_x;
+    __pyx_t_9 = (__pyx_v_rel_x > 0);
+    if (__pyx_t_9) {
+      __pyx_t_8 = __pyx_v_rel_x;
     } else {
-      __pyx_t_6 = 0;
+      __pyx_t_8 = 0;
     }
-    __pyx_v_dx0 = __pyx_t_6;
+    __pyx_v_dx0 = __pyx_t_8;
 
-    /* "arcengine/_raw_render_cython.pyx":74
+    /* "arcengine/_raw_render_cython.pyx":71
  *         # Destination range (in output) clipped to viewport
  *         dx0 = rel_x if rel_x > 0 else 0
  *         dy0 = rel_y if rel_y > 0 else 0             # <<<<<<<<<<<<<<
  *         dx1 = rel_x + sprite_w
  *         if dx1 > view_w:
 */
-    __pyx_t_7 = (__pyx_v_rel_y > 0);
-    if (__pyx_t_7) {
-      __pyx_t_6 = __pyx_v_rel_y;
+    __pyx_t_9 = (__pyx_v_rel_y > 0);
+    if (__pyx_t_9) {
+      __pyx_t_8 = __pyx_v_rel_y;
     } else {
-      __pyx_t_6 = 0;
+      __pyx_t_8 = 0;
     }
-    __pyx_v_dy0 = __pyx_t_6;
+    __pyx_v_dy0 = __pyx_t_8;
 
-    /* "arcengine/_raw_render_cython.pyx":75
+    /* "arcengine/_raw_render_cython.pyx":72
  *         dx0 = rel_x if rel_x > 0 else 0
  *         dy0 = rel_y if rel_y > 0 else 0
  *         dx1 = rel_x + sprite_w             # <<<<<<<<<<<<<<
@@ -19040,17 +19078,17 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
     __pyx_v_dx1 = (__pyx_v_rel_x + __pyx_v_sprite_w);
 
-    /* "arcengine/_raw_render_cython.pyx":76
+    /* "arcengine/_raw_render_cython.pyx":73
  *         dy0 = rel_y if rel_y > 0 else 0
  *         dx1 = rel_x + sprite_w
  *         if dx1 > view_w:             # <<<<<<<<<<<<<<
  *             dx1 = view_w
  *         dy1 = rel_y + sprite_h
 */
-    __pyx_t_7 = (__pyx_v_dx1 > __pyx_v_view_w);
-    if (__pyx_t_7) {
+    __pyx_t_9 = (__pyx_v_dx1 > __pyx_v_view_w);
+    if (__pyx_t_9) {
 
-      /* "arcengine/_raw_render_cython.pyx":77
+      /* "arcengine/_raw_render_cython.pyx":74
  *         dx1 = rel_x + sprite_w
  *         if dx1 > view_w:
  *             dx1 = view_w             # <<<<<<<<<<<<<<
@@ -19059,7 +19097,7 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
       __pyx_v_dx1 = __pyx_v_view_w;
 
-      /* "arcengine/_raw_render_cython.pyx":76
+      /* "arcengine/_raw_render_cython.pyx":73
  *         dy0 = rel_y if rel_y > 0 else 0
  *         dx1 = rel_x + sprite_w
  *         if dx1 > view_w:             # <<<<<<<<<<<<<<
@@ -19068,7 +19106,7 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
     }
 
-    /* "arcengine/_raw_render_cython.pyx":78
+    /* "arcengine/_raw_render_cython.pyx":75
  *         if dx1 > view_w:
  *             dx1 = view_w
  *         dy1 = rel_y + sprite_h             # <<<<<<<<<<<<<<
@@ -19077,17 +19115,17 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
     __pyx_v_dy1 = (__pyx_v_rel_y + __pyx_v_sprite_h);
 
-    /* "arcengine/_raw_render_cython.pyx":79
+    /* "arcengine/_raw_render_cython.pyx":76
  *             dx1 = view_w
  *         dy1 = rel_y + sprite_h
  *         if dy1 > view_h:             # <<<<<<<<<<<<<<
  *             dy1 = view_h
  * 
 */
-    __pyx_t_7 = (__pyx_v_dy1 > __pyx_v_view_h);
-    if (__pyx_t_7) {
+    __pyx_t_9 = (__pyx_v_dy1 > __pyx_v_view_h);
+    if (__pyx_t_9) {
 
-      /* "arcengine/_raw_render_cython.pyx":80
+      /* "arcengine/_raw_render_cython.pyx":77
  *         dy1 = rel_y + sprite_h
  *         if dy1 > view_h:
  *             dy1 = view_h             # <<<<<<<<<<<<<<
@@ -19096,7 +19134,7 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
       __pyx_v_dy1 = __pyx_v_view_h;
 
-      /* "arcengine/_raw_render_cython.pyx":79
+      /* "arcengine/_raw_render_cython.pyx":76
  *             dx1 = view_w
  *         dy1 = rel_y + sprite_h
  *         if dy1 > view_h:             # <<<<<<<<<<<<<<
@@ -19105,25 +19143,25 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
     }
 
-    /* "arcengine/_raw_render_cython.pyx":82
+    /* "arcengine/_raw_render_cython.pyx":79
  *             dy1 = view_h
  * 
  *         if dx1 <= dx0 or dy1 <= dy0:             # <<<<<<<<<<<<<<
  *             continue
  * 
 */
-    __pyx_t_8 = (__pyx_v_dx1 <= __pyx_v_dx0);
-    if (!__pyx_t_8) {
+    __pyx_t_10 = (__pyx_v_dx1 <= __pyx_v_dx0);
+    if (!__pyx_t_10) {
     } else {
-      __pyx_t_7 = __pyx_t_8;
+      __pyx_t_9 = __pyx_t_10;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_8 = (__pyx_v_dy1 <= __pyx_v_dy0);
-    __pyx_t_7 = __pyx_t_8;
+    __pyx_t_10 = (__pyx_v_dy1 <= __pyx_v_dy0);
+    __pyx_t_9 = __pyx_t_10;
     __pyx_L8_bool_binop_done:;
-    if (__pyx_t_7) {
+    if (__pyx_t_9) {
 
-      /* "arcengine/_raw_render_cython.pyx":83
+      /* "arcengine/_raw_render_cython.pyx":80
  * 
  *         if dx1 <= dx0 or dy1 <= dy0:
  *             continue             # <<<<<<<<<<<<<<
@@ -19132,7 +19170,7 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
       goto __pyx_L3_continue;
 
-      /* "arcengine/_raw_render_cython.pyx":82
+      /* "arcengine/_raw_render_cython.pyx":79
  *             dy1 = view_h
  * 
  *         if dx1 <= dx0 or dy1 <= dy0:             # <<<<<<<<<<<<<<
@@ -19141,49 +19179,49 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
     }
 
-    /* "arcengine/_raw_render_cython.pyx":86
+    /* "arcengine/_raw_render_cython.pyx":83
  * 
  *         # Source offset within sprite (when sprite extends past viewport edge)
  *         sx0 = -rel_x if rel_x < 0 else 0             # <<<<<<<<<<<<<<
  *         sy0 = -rel_y if rel_y < 0 else 0
  * 
 */
-    __pyx_t_7 = (__pyx_v_rel_x < 0);
-    if (__pyx_t_7) {
-      __pyx_t_6 = (-__pyx_v_rel_x);
+    __pyx_t_9 = (__pyx_v_rel_x < 0);
+    if (__pyx_t_9) {
+      __pyx_t_8 = (-__pyx_v_rel_x);
     } else {
-      __pyx_t_6 = 0;
+      __pyx_t_8 = 0;
     }
-    __pyx_v_sx0 = __pyx_t_6;
+    __pyx_v_sx0 = __pyx_t_8;
 
-    /* "arcengine/_raw_render_cython.pyx":87
+    /* "arcengine/_raw_render_cython.pyx":84
  *         # Source offset within sprite (when sprite extends past viewport edge)
  *         sx0 = -rel_x if rel_x < 0 else 0
  *         sy0 = -rel_y if rel_y < 0 else 0             # <<<<<<<<<<<<<<
  * 
  *         # Masked blit: copy non-transparent pixels.
 */
-    __pyx_t_7 = (__pyx_v_rel_y < 0);
-    if (__pyx_t_7) {
-      __pyx_t_6 = (-__pyx_v_rel_y);
+    __pyx_t_9 = (__pyx_v_rel_y < 0);
+    if (__pyx_t_9) {
+      __pyx_t_8 = (-__pyx_v_rel_y);
     } else {
-      __pyx_t_6 = 0;
+      __pyx_t_8 = 0;
     }
-    __pyx_v_sy0 = __pyx_t_6;
+    __pyx_v_sy0 = __pyx_t_8;
 
-    /* "arcengine/_raw_render_cython.pyx":90
+    /* "arcengine/_raw_render_cython.pyx":87
  * 
  *         # Masked blit: copy non-transparent pixels.
  *         for dy in range(dy0, dy1):             # <<<<<<<<<<<<<<
  *             sy = sy0 + (dy - dy0)
  *             for dx in range(dx0, dx1):
 */
-    __pyx_t_6 = __pyx_v_dy1;
-    __pyx_t_9 = __pyx_t_6;
-    for (__pyx_t_10 = __pyx_v_dy0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-      __pyx_v_dy = __pyx_t_10;
+    __pyx_t_8 = __pyx_v_dy1;
+    __pyx_t_11 = __pyx_t_8;
+    for (__pyx_t_12 = __pyx_v_dy0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
+      __pyx_v_dy = __pyx_t_12;
 
-      /* "arcengine/_raw_render_cython.pyx":91
+      /* "arcengine/_raw_render_cython.pyx":88
  *         # Masked blit: copy non-transparent pixels.
  *         for dy in range(dy0, dy1):
  *             sy = sy0 + (dy - dy0)             # <<<<<<<<<<<<<<
@@ -19192,48 +19230,48 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
 */
       __pyx_v_sy = (__pyx_v_sy0 + (__pyx_v_dy - __pyx_v_dy0));
 
-      /* "arcengine/_raw_render_cython.pyx":92
+      /* "arcengine/_raw_render_cython.pyx":89
  *         for dy in range(dy0, dy1):
  *             sy = sy0 + (dy - dy0)
  *             for dx in range(dx0, dx1):             # <<<<<<<<<<<<<<
  *                 pixel = sp[sy, sx0 + (dx - dx0)]
  *                 if pixel >= 0:
 */
-      __pyx_t_11 = __pyx_v_dx1;
-      __pyx_t_12 = __pyx_t_11;
-      for (__pyx_t_13 = __pyx_v_dx0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
-        __pyx_v_dx = __pyx_t_13;
+      __pyx_t_13 = __pyx_v_dx1;
+      __pyx_t_14 = __pyx_t_13;
+      for (__pyx_t_15 = __pyx_v_dx0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
+        __pyx_v_dx = __pyx_t_15;
 
-        /* "arcengine/_raw_render_cython.pyx":93
+        /* "arcengine/_raw_render_cython.pyx":90
  *             sy = sy0 + (dy - dy0)
  *             for dx in range(dx0, dx1):
  *                 pixel = sp[sy, sx0 + (dx - dx0)]             # <<<<<<<<<<<<<<
  *                 if pixel >= 0:
  *                     output[dy, dx] = pixel
 */
-        __pyx_t_5 = __pyx_v_sy;
-        __pyx_t_14 = (__pyx_v_sx0 + (__pyx_v_dx - __pyx_v_dx0));
-        __pyx_v_pixel = (*((__pyx_t_5numpy_int8_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_5numpy_int8_t const  *) ( /* dim=0 */ (__pyx_v_sp.data + __pyx_t_5 * __pyx_v_sp.strides[0]) )) + __pyx_t_14)) )));
+        __pyx_t_16 = __pyx_v_sy;
+        __pyx_t_17 = (__pyx_v_sx0 + (__pyx_v_dx - __pyx_v_dx0));
+        __pyx_v_pixel = (*((__pyx_t_5numpy_int8_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_5numpy_int8_t const  *) ( /* dim=0 */ (__pyx_v_sp.data + __pyx_t_16 * __pyx_v_sp.strides[0]) )) + __pyx_t_17)) )));
 
-        /* "arcengine/_raw_render_cython.pyx":94
+        /* "arcengine/_raw_render_cython.pyx":91
  *             for dx in range(dx0, dx1):
  *                 pixel = sp[sy, sx0 + (dx - dx0)]
  *                 if pixel >= 0:             # <<<<<<<<<<<<<<
  *                     output[dy, dx] = pixel
 */
-        __pyx_t_7 = (__pyx_v_pixel >= 0);
-        if (__pyx_t_7) {
+        __pyx_t_9 = (__pyx_v_pixel >= 0);
+        if (__pyx_t_9) {
 
-          /* "arcengine/_raw_render_cython.pyx":95
+          /* "arcengine/_raw_render_cython.pyx":92
  *                 pixel = sp[sy, sx0 + (dx - dx0)]
  *                 if pixel >= 0:
  *                     output[dy, dx] = pixel             # <<<<<<<<<<<<<<
 */
-          __pyx_t_14 = __pyx_v_dy;
-          __pyx_t_5 = __pyx_v_dx;
-          *((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ ((char *) (((__pyx_t_5numpy_int8_t *) ( /* dim=0 */ (__pyx_v_output.data + __pyx_t_14 * __pyx_v_output.strides[0]) )) + __pyx_t_5)) )) = __pyx_v_pixel;
+          __pyx_t_17 = __pyx_v_dy;
+          __pyx_t_16 = __pyx_v_dx;
+          *((__pyx_t_5numpy_int8_t *) ( /* dim=1 */ ((char *) (((__pyx_t_5numpy_int8_t *) ( /* dim=0 */ (__pyx_v_output.data + __pyx_t_17 * __pyx_v_output.strides[0]) )) + __pyx_t_16)) )) = __pyx_v_pixel;
 
-          /* "arcengine/_raw_render_cython.pyx":94
+          /* "arcengine/_raw_render_cython.pyx":91
  *             for dx in range(dx0, dx1):
  *                 pixel = sp[sy, sx0 + (dx - dx0)]
  *                 if pixel >= 0:             # <<<<<<<<<<<<<<
@@ -19257,11 +19295,14 @@ static PyObject *__pyx_pf_9arcengine_18_raw_render_cython_blit_sprites(CYTHON_UN
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __PYX_XCLEAR_MEMVIEW(&__pyx_t_4, 1);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __PYX_XCLEAR_MEMVIEW(&__pyx_t_7, 1);
   __Pyx_AddTraceback("arcengine._raw_render_cython.blit_sprites", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sp, 1);
+  __Pyx_XDECREF(__pyx_v_sprite);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -21428,31 +21469,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{32},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{39},{34},{8},{20},{32},{22},{30},{37},{5},{8},{20},{8},{15},{3},{15},{28},{18},{4},{12},{1},{5},{5},{9},{17},{18},{5},{8},{15},{2},{3},{3},{2},{3},{3},{6},{9},{5},{5},{6},{7},{8},{12},{1},{2},{10},{5},{13},{5},{8},{8},{7},{4},{10},{1},{4},{8},{4},{7},{2},{5},{3},{6},{4},{5},{3},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{5},{5},{15},{12},{10},{12},{19},{5},{4},{2},{8},{8},{5},{4},{4},{6},{3},{2},{3},{8},{6},{6},{6},{6},{6},{1},{2},{2},{291},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1378 bytes) */
-const char* const cstring = "BZh91AY&SY\014$\221\203\000\000\252\177\363\373\357\375pg\347\375W\277#\373\000\277\377\377\360@@@@@@\000@@\000@\000P\005:\205\033\314\th\310Rnp\225L\211\222oQ\000x)\240\r=!\246\200b\r\003A\246C\324\007\250\365=!\262\202RI\342b\t\250h\320\000\000\003@\000\000\000\006\215\000\000\323Bh \232\r*~\246\233Bb\236\204\310h\0004\000\000\006\2324\036\230\241\303CFM\0324i\241\221\220\302\000\310\001\220i\240\000\006@\310\002T\365\010\251\373\022e\036\230M\024by\t\240\000\001\240\000\000\000\003A\257\2754\370\321:zI\377zB\245\007J\366#\250\201\326;\n\002Ri\226\244d\032\3272\002E\304\213\230\204\361$\314\017\251\246\223E\212\031\361\022\020\220\310\274h\364\267\201\246-\256\315\204\373)\2373\322\352\005\276\t#\342e1\325U\026\013\344ZW\256.\n\316\377\315\027\003z\037{\257\237\306\364\363_\247\345\244\347\210\226!\226\2320\017\241J\364\303\033\304\207U\232\301\313R\362\030S&\331\022>zN\345\265\n\264\303\340\305Y\200pf\263\223\342\323\245\367F\303\310\234\200\247\302\001\\\367\375\327\300\003^B\253\345a-z\216YQAi\r\214\247\266n\215D\251\\\223OA\022\202\255\356\332\353N*\263\247\025\021\327C\302\243\202\327R\312\201\345\021\274\313\3459\355\316\247\361J\nMg/\331\253\226M\247E\233\372o\341\234v\360LH\375\371\343k\341\247G!\220\270\000\326\344`\003f\250\207\201\223\224\337^\355D\245\233+\024s\300\375\367pi}\317\024\360+K\004\332'\336\220.\024\262\336\301L*\2012\230\021\n\250?:\250\240 E\026\345*\242\262\303\323&\322\233\340\330\240\212T\312d\377\026D\245ym\311\376\177H\025s\375WH\234+aP9\002 \305s\301<\215\305\271r\353\204\362P3\333P\240\306\252G\330;(\363\342A4\231\031\215\203I,y\306$K\271\340\360'xl(\032\216\206|pW\355R\312\362OX6\272\354\025\310N \301\177\035\341b\376\370\324\0357\3650\262 \270\020Jb\302\000\331\234\220\\\023\311B\241K#\r\001C\360\255x\345\230\204/\274\325\034\020/e((\241P\241\036\253+\007`\032z\273\265\357/\227\016^\310\014y\327\264\273\334\236\206M\320\361\234\365q\003\305Ry\226\202\3728\223\331\226\t3u\240\017U\300\247Y\004\200b\254\323\262j\220\316\322\232""\272\201r\316^u\r)\024j\010L\007H(\250p\306\375:\354\230\211\204\244\021\354\367\324\214\001\226\306m\222\236{\261\033h5\315\251\203e4\350$\266\364J\020*8H\341\034\013MA\322\327x\213\030T\021\276b\255\352\335W \326d\235\307p\350\316rw\034\310\004\2012\344\004L\315\3321\340\315c\310\265\207\010\376\244\201)\245\006F\222\331\244\230W2\004C1(8\006\022\021~:\005\351\"\t\210\0109@\252=\203\265\265\316\344z\353\233\331XdS\013Kb\365\034\252hQ*\313\205\203\232\031J\251\035R\222:H\017k4\2574\332\004\222\201l\226]\210\363!\344$6\351l\334\002\201\344\021\333c\315\022It#'\2515\260\254\324\220U\275\006g@UI\230\353\201\2167\210\211xMP\002\235\313$\325@\200R\362\034\244\201\2424\320R*I\004\202\036\200\300\024\t7dlT\330\341I=\217\010\241\231)(\311S7\013\326\211\301\321\240v\363d\326\rN\337\034\023\205y&\341\211\344\034\322`i&1\245\362bBC7k\320Q{%#\225}\325\312y\333r\021\310VK\307\272\037v\261\254\361\332.d\332th\236\202\233\360A\350\307w\304(\305\n\n\000R\006`l\022\030\r\243N\200\202\224\275\014WK\014\355xJw.Fw\355\325\206 :(E\222\242s\014G\036j6\202!V\233\214,\241\321\211\223nU!\305C\331\3445iM{\331\031\354\023Oi/\207~9\310\\\023%\331\220\221\030\322\336\262\020\244p\252'\302\\\334]\203\313\357V\246g\020?\023(\367\224\246\201\025r\236\310\306\207Eq\236\202\322\2441\004\204\200\324`\310-\341\244\027\316\021F\244\031\"a\212\035\002+\211\302\201\005\320.p\356\023\230\332tHX\314\323\205W\327\325\331p\200*[G8\354!\364\216*5\266\320t[\253!X\264\263gf\017dV\372.T\230hj\300\320\310j\215[\246x\260-\021\001)\207\220ytS\234\222\t\264\275\364\220\006\223m4\333\3210\205kx\205Bi\r\250\330H\266-\264=\006\260\325\277\021\351\034\024\206!A\005;\242\272ys*\305\200U\305\262K\353c\037V\"#1n~\310 F\311\347)\272LK\035\347\316\023\373\017'\025s\006\263r\242\351\267\205\302\267\213\310;\335\203\250\315t\250BL\333\305\371x(Y4\246\037\202\261\227\240\227P\250\234JO\000\231x3\361NG\377\027rE8P\220\014$\221\203";
-    PyObject *data = __Pyx_DecompressString(cstring, 1378, 2);
+    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{32},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{39},{34},{8},{20},{32},{22},{30},{37},{5},{8},{20},{8},{15},{3},{15},{28},{18},{4},{12},{1},{5},{5},{9},{17},{18},{5},{8},{15},{2},{3},{3},{2},{3},{3},{6},{9},{5},{5},{6},{7},{8},{12},{1},{2},{10},{5},{13},{5},{8},{8},{7},{4},{10},{1},{4},{8},{4},{7},{2},{5},{3},{6},{4},{5},{3},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{5},{5},{6},{12},{10},{12},{19},{5},{4},{14},{2},{6},{8},{8},{8},{8},{5},{4},{4},{6},{3},{2},{3},{8},{6},{6},{6},{6},{6},{1},{2},{2},{304},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1394 bytes) */
+const char* const cstring = "BZh91AY&SY\225rm\r\000\000\257\177\363\373\357\374qf\347\375\327\277#\373\000\277\377\377\360@@@@@@\000@@\000@\000P\005,\317v\345\313\023\023-Z[\034\tH\223iFA\246\324\332i\250\000\365\006\206\200h\r\000\032z\200\006\322\017MM\2504\010&\230\243&\204\023\324\310d4\003F\2004\000\000\003CA\210\r4&\204\"G\250\375S\324\332\231\244\311\243\322\000\003 \320\000\003C \323@\364\207\r\r\0314h\321\246\206FC\010\003 \006A\246\200\000\031\003 \tM@\246\310\2322\004\311\251\350\236I\242`\032\001\036\220\031\014\230#\t\202d3\270\356'*%\323\362\3528H\271\222U\214/\023)\020S\211E\205$m\007WM@\261\240\314\t\250\220\253\206\0342\003#Nks\331\226_a\3007\006\347\003o\237\236\337\352o\266\321\332]\333c}\351m\002\335\004\221\340e1\376\252\213\002\357-+\236-\n\316\377z.\003r\035\254\373\035\326\216\374\356\360F\020\250uB\244qP6$4\340z\234\303\207\024\226A\215c3\n#\215p{\217\2060\265%\023E\200j)\242\250\014\016\t\0075V\021\235\257\300\365u\301\231\234\240\263s<\226D6\240\313qG{^K.Eu\3258O\211\231\356Z\325r\310\223\222\351!KAk\025\245\027Ut\2346\031\266\350\017\276\036\020\274'b\331<\037\240}>\312\2465\3657j\357S\231H`\357\232\331\217\032\335\212K\370]\345a\251AS\037M\207\346j]\213X\321\302\320\003KQ\200\rz\242\034\214\232\246\3533TJW\262\261G9\037\236\356\r.\314\361N\212\264\260\2461\241I\002\341K-\314\024\302\250\023)\200\210(>\025Q@@\210\243Z\245PX\364\247E\221\021kd\240\226\021\234\315\324\375\343\022\037Y\351\n\377?\242C7S}\224T\r\275\330\312\230\034\034o\200(\024\314e\311\222\340\225jf\366[E6r\260\205\343\362\020?\022i\304Q\260\330m+\323\3264\2243u\302\000J\001\261n95i\320\263\360\326\326\315\365\001+[\305\230\204\036\363y\266\354\302>{B\340\305\243\211D\210\205\240\301\231UD\001}\362AhM\332\025\nY\030h\005\017\244\265\324\225\342\020\276\231\2528 \\\312PQB\241B:\254\254\035\200i\342\315]\205\336\301\255\303\001\216\272\350\256\233\223\316d\344\303\305\363\305\224\034\265'\230\264\027Q\304\236\306X$\315\325(\003\325p\024\316A \030\261V\022+\3342\311\300\326\000Z\220w\n\005s\214\226/*\016""\000d\204t\254\356\311\"\250\200(\274\306\346\322\030\241\033\260L\035\014\272U\031\2442Ab\2241\216\005\31335\320E\024\0235\243Y\364[m\016\325\320\021{\026\2053\304\267\241\211\366\364Lm[\376\307\217\244\216\2279\3550\254\023f@P\336w\t\247\351\275|\n9\214\007\374\222\004\243\\\332\226\031cZc\024PJOzLj0\304\225\226\342,h\241)HchM\241B\013,\220\264\203Y\222\0268\266\303\222\214Y\207\034\242x\210c\233\r6\002/\003\236xC8R\215\262\026=\333\232:\357\001\305\024\221I0&\201\206pp\315r\345`\014\2038\023.\r4I%\260\214\235I\255\202\263RAV\306\314\350\n\2513\031\340a\303p\210\227H\325\000)\253bMT\010\005.!\312H\032#M\005\"\244\220H!\350\014\001\020Pe%\251\273O<\303\357`$`\2511\032T\266Fc\325x\013(\205\346\245\250C\223\376\341\341 \305\206:\305\002oq\026\337O,fq\242\306HHn<z\311\347)\314t3\346\307k\341-21\256h\344\326r\351^/<,|\224\213)\326\260\251\226\215B\0332\347\362v\t\3012\032`\233\001\2343\021-4\027\343\030\301\205\224j\277<\t\3305\232\326\2423\276\225Xa\001\321Q\026J\211\2560\216_!F0D*\323D\302\312\035\030\250\275$<\250\323HD\277\033d\330\366|(5\332\232\311(.\034\271\347R\234\260\214\257Y\357$\214ua\344d9\034\305T\252\247_C\214\371\326$\332\204\020\322\\B\005i\3001\033\314b\262\3125\207a\320Y*C\020HH\001\250\0302\013:t\202\351|\"\213\310\\EJ\221\342\017\262\247H\202\026\274Z\301\230\026\301\312\021'\243\362\234x\310\232\327\377\253$\023O\305\304\177\350\205\306\312\261\361 \354\273v\023\020\266\267\007\004\340\324\\\250\314\2544o\271h7\332{\251o\031\252\214\031DLJ$\t\300\315D\367\244\203\212F\350\307\r\001\304Djx\205\221\332\314\205\2239pD\234#\tb\233\022#\335\340\032m\202\211\206Ba\023\325\211\027\272|ZU\273`\256\224t\357J$e\213\203\335\022}\241f\261\347)\260K\035\250\013\222pod\227\214\241P\376\3133\244\265\340\026\371\343UIR\036r\007\313\331\347\240\365Nb-\251\366\t\246 \247\250M\200\267\225Y\341\257&\231\030\261\265NmNl\266\323\237\342\356H\247\n\022\022\256M\241\240";
+    PyObject *data = __Pyx_DecompressString(cstring, 1394, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1244 bytes) */
-const char* const cstring = "x\332}UKo\024G\020\306D&F\201\304\006\024%95R\310\022\t&6X(\212\034G\006\214\344CxYpm\365t\327\356v\350\351\036\367cw\206S\216{\234\343\034\367\310O\332#?\201\237\220\352\236Y{\215\223H\336\236~\324\363\253\257\312\277\221\003\245\210\220\005h'\215v\244\264\300AH=:\273$w\004)\202\363$\007\"\265\200\n\004aZ\020m<qJ\242\370\3430\034\202%\023\tS\"\014\270\364\004Ui\034\020\347\255\024\340\2360M\214V5\341\026\230\007\302H\336)\3711\363D:\302\215\366r\024Lp\350\204\024P\030[g\250\025M1\347\344H\023o\010*\213\373\311N'\021]\366B\275\341\251\225\236\345\nz\201.\250\2415\305\377\351\246\264\310T\3721\361u\td\320\337{\313\264Ki\234\251tb\250!\021*\277\202\335\323U\300d\007B'tX\224\276&n\314\320\264\017%\00674\226\360\332\217\215\316\230\265\254>J\001\230\340\211\031\222\334\004-\034\271\313*\264rG\374|t\321W\007~(Kc=\210#=aJb\225\214\200{\021x\024\306\"\r\370\200\240\237\001:\213\211\014\356\221\021j-\205\273p\020\353\344f\357\317\224\340\333\230 \206\360\334 \224\2514OR\2241\037\001J\346`\021d\2040\226\025\235\244\372i\362\362\360\345\375\335_w\023-,\374\205\356\035F\227s\205\225C:\304\234\202T\036\235Ex]F\216\206\2446\201h\3000\261\254%\312\255*\3701h\342\300\307\r\031\244Z0\217ySTGn\016z\\\345\004\242\3663\246\034d/\316\201\207!\367\004c\234\203[\242y\354\241$\005\253\023~\310\347\367`\315\031\320otb\016\232D6N\300\"1<\024\361l\362\230T\266?\370\371\017&\004\325\021\236\230,\263\034\364Hj\370\205Z6\245\026\260\216\226\366\225-\353\212 \202\333\0257J\305p\261p\031\313\371\336\n\327\243\221.\231\375\317\257\227\024\333\027\322\305\270 E7\342\344n,\343(\261+f\030\233\025*\017\332\247\3269\353[\351:\025\021\263p\362=\220\275\337\311\366\005\356i\203\245\035\262\240<\241\230\201\010\034(%\"$ \264\321\367\261\324\023\311\024\276r\251\245\247T\207\242\2543\312\215\205\254@=\231\354\220!\223\252\253\247,\"1W\305B\301\260k>\227\350q\335\337\353\246\2048\007\307\305\273\310\346ST\316\275\237\336\206\323\0222\245\014O\243&\005'\230g\331\277\274vm\020m\364\223*;8~rtt\250\224,\235t""\224\276\254+\374=E\266\323\347\010\363k\030\036\303I\000\315!6Kv\3267X\331\245U\332q\357\224\035\331Ev0Wk.M\206\350`\333\243\214\313\231\203\\!\276\256\304\031\006\216sV\320*.5\"\037;\203\322\345f\004>\0265\036Q\225J\354\014\3138\344\214\277\343\330\000X#\021\003\246\"\366\033\3054:\240E%\252mQ\355\210Z\324\333\242\336\301,pd\000\026*\3655Xk\354P\261\221C\216`\301\372\301A\3510h\036\235\243[\347c~TJ\201K*\"~\343\364\212^N\223\351\030\327\323\216\322\202a\204\024gh\034\240qJ\341\301\210\240\360\2535+\342\247[\221\274\270\302\024\2272\321\007\343F\213%\376aj\245\254@\225\246\244\024[\213\3621\360w.\024\335\251\217+nS\316i\027t)\371;ts\250\227r\223\364\337!&s\022\230\352\334\236\321\376t\327\025i\345\002\023\304\355H:\034z\026\024\255\342Rw%\005AShX \034Z}.\270\353\333*\355\373\370V\366K\027\211\201\021'Wv\225\247\343\376;EA\213\322P:o\360g\003\016\326j\333\325\256\336\246\024)\202\2461ED&\224\310o\300\301\036\300E\214\3518\255\323\252B\341\277\327>=\272\264\376}{\271\375i\2766\337\372\364\355\245\365\253\263\365\331\233\346v\263\263\330\270>\243\355A\373j\261q\263y\320\274mw\332\203\225\355\307\215\315\3462\312=l\362vm\261z\370t\345\322\325of\262\231\264\257\333\351\234-6\276>\177\0306\217\033\334|5\333\235\331fkq\355Fs\373?\256?\246\223k~lx{\253=\236\257-\256]\357\254\263Y\335^i\363\371\227\363\223\250\273r\214\357\327g\317\232;\315I\273\216\301_\333jn5\307\355\027\355\203x\330l\2564\200\341\037\316\267\026\233\337a\336\267\333\335\326\317\037\316\371\207\033\037v\026\2337\233G\355M\314\363\326\017\351e2\177\365\342\037\302\311t\035";
-    PyObject *data = __Pyx_DecompressString(cstring, 1244, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1255 bytes) */
+const char* const cstring = "x\332}UIo\0337\024NZ8\265\321\244\265\023\037\322\036\n\032h\240\004\210'vj\264E\341\272\310\342\000>4\233\221\\\t\212|\222\330p\3101\027i&\247\036u\234\343\034u\314O\3221?!?\241\217\234\221,\307m\001\213\333\274\355\373\336\342\337\310#\245\210\2209h'\215v\244\260\300AH=<\177$w\004\311\203\363\244\017Dj\001%\010\302\264 \332x\342\224D\361\307a0\000K\306\022&D\030p\351\023\224\205q@\234\267R\200{\30241ZU\204[`\036\010#\375V\311\217\230'\322\021n\264\227\303`\202C'$\207\334\330*C\255h\2129'\207\232xCPY\354&;\255Dt\331\tu\206'Vz\326W\320\t\264A\r\254\311\377O7\301\"\023\351G\304W\005\220^\367\356-\323.\3018Wi\305PC\"U~\205\273\247\253\204\311\226\204V\3508/|E\334\210\241i\037\n\014n`,\341\225\037\031\2351kYu\222\0020\301\0233 }\023\264p\344.+\321\312\035q\357\344\262\257\226\374P\024\306z\020'z\314\224\304,\031\001\367#\361(\214I\352\361\036A?=t\026\201\364\356\223!j-\204\333p\220\353\344\346\360\317\004\360m\004\210!<7HeJ\315\223\024e\304#@\311>X$\031)\214iE')\177\232\274<~\271{\360\353A*\013\013\177\241{\207\321\365\271\302\314a9DLA*\217\316\"\275.#'\003R\231@4`\230\230\326\002\345V\025\374\0104q\340\343\201\364R.\230G\334\024\325\2616{\035\257r\014Q\373\031S\016\262\027\027\310\303\220\273\002c\234\203[\260y\352\241 9\253\022\177X\317\357\301\232s\242\337\350T9h\022\253q\014\026\013\303C\036\357\246\037AeG\275{\1770!\250\216\364D\260\314r\320C\251\341\001\265lB-`\036-\3552[T%A\006\367Jn\224\212\341b\3422\326\347\207+\265\036\215\264`\216>\177^\224\330\221\220.\306\005)\272!'wc\032\207\251\272\"\302\330\254Pz\320>\265\316y\337J\327\252\210\210\302\311\367@\016\177'{\227jO\033L\355\200\005\345\tE\004\"p\240\224\210\220\210\320F\357b\252\307\222)\374\312\245\226\236R\035\362\242\312(7\026\262\034\365d\262C\006L\2526\2372\217\205\271*\026r\206]\363\271D\307\353\321a;%\304\005:.\277\305j^\262r\341\373\3625,S\310\2242<\215\232\024\234`\236e\377\362\265m\203h\243\233T\331\243\323'''\307J\311\302IG\351\313\252\304\337S\254v\372\034i~\r\203S8\013\2409\304f\311\316\373\0063""\273\260J\333\332[VGv\271:\230\2534\227&Cv\260\355Q\306\365\231\203\276B~]\2013\014\034\347,\247e\\*d>v\006\245\213\303\020|Lj\274\242*\225\330\031\226q\3503\376\216c\003`\216D\014\230\212\330o\024a\264D\213R\224{\242\334\027\225\250\366D\265\217(pd\000&*\3655Xk\354@\261\241\303\032\301\204u\203\203\322A\320<:G\267\316G|TJ\201KJ\"\356qzE/K0m\305ueGi\3160B\21234\016\3208\245\360bDP\270k\315\362\270\265+\026/\2560\301\245H\345\203q\243\305\002\377\020Z!KP\205)(\305\326\242|\004\374\235\013y{\353\342\212\307\2049\235\202.$\177\207n\216\365Bn\234\376;D0g\201\251\326\355y\331/Om\222V\036\020 \036\207\322\341\320\263\240h\031\227\252K)\305Y\325A\300S\327M\351\334\205\265r^XN\205\027\351qi\206/\262\356\212\356\220V:\352\366I\267\227\335^\2411\213\026\241p\336\340\317\006\234\271\345\236\253\\\265G)\252\243{D\217\244\205\002K\037p\346\007p\221~:J\353\244\244%\255\376\276\372\351\356\225\265\357\232/\233\375\346\321\247\333W\3266\246k\3237\365N\275?_\337\252\177h\316fW\347\3537\246o\353_\232\235\371\372\255\372a\3756J\256\034?\342\361\347fk\276\3306\353\215\346f\263\277<|\272ve\343\333\251\254\307\315\353f2c\363\365o.^\006\365\343\032\017_O\017\246\266\336\232_\277Y\357\374\307\363\307ts\365\2175o\266\233S\214\354\372\215\326:\233V\315\265\246?\373jv\026uW\256\361\373\215\351\263\372N}\326\2545\257\346\327\267\352\355\372\024\341>\214\227\315\372Z\r\010\342x\2665\337\274\335|\321\3544\007\215\237\3754\343\037n~\330\237oFH\267\020\355\366\367\351\313x\366\352\305?p\326\203\345";
+    PyObject *data = __Pyx_DecompressString(cstring, 1255, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2313 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and arcengine/_raw_render_cython.pyx at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy._core.multiarray failed to importnumpy._core.umath failed to import object><strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsis__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferarcengine._raw_render_cythonasyncio.coroutinesbaseblit_spritesccam_xcam_y__class____class_getitem__cline_in_tracebackcount__dict__dtype_is_objectdxdx0dx1dydy0dy1encodeenumerateerrorflagsformatfortran__func____getstate__iid__import__index_is_coroutineitemsitemsize__main__memviewmode__module__nname__name__ndim__new__npnumpyobjoutputpackpixelpop__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerrel_xrel_yrendered_pixels__set_name__setdefault__setstate____setstate_cython__shapesizespsprite_hsprite_wstartstepstopstructsx0sysy0__test__unpackupdateva""luesview_hview_wxxsys\200\001\3606\000\005\031\230\002\230&\240\001\240\021\360\026\000\005\t\210\005\210U\220!\2201\330\010\r\210_\230A\230Q\330\010\023\2202\220V\2301\230A\330\010\023\2202\220V\2301\230A\340\010\020\220\002\220!\2203\220b\230\001\330\010\020\220\002\220!\2203\220b\230\001\360\006\000\t\017\210i\220v\230R\230w\240a\330\010\016\210i\220v\230R\230w\240a\330\010\016\210f\220B\220a\330\010\013\2104\210r\220\021\330\014\022\220!\330\010\016\210f\220B\220a\330\010\013\2104\210r\220\021\330\014\022\220!\340\010\013\2104\210s\220$\220c\230\024\230S\240\001\330\014\r\360\006\000\t\017\210a\210y\230\006\230b\240\007\240q\330\010\016\210a\210y\230\006\230b\240\007\240q\360\006\000\t\r\210F\220%\220q\230\005\230Q\330\014\021\220\024\220S\230\003\2302\230Q\330\014\020\220\006\220e\2301\230E\240\021\330\020\030\230\002\230!\2304\230t\2403\240c\250\022\2501\330\020\023\2206\230\023\230A\330\024\032\230!\2304\230v\240QO";
+    #else /* compression: none (2353 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and arcengine/_raw_render_cython.pyx at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy._core.multiarray failed to importnumpy._core.umath failed to import object><strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsis__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferarcengine._raw_render_cythonasyncio.coroutinesbaseblit_spritesccam_xcam_y__class____class_getitem__cline_in_tracebackcount__dict__dtype_is_objectdxdx0dx1dydy0dy1encodeenumerateerrorflagsformatfortran__func____getstate__iid__import__index_is_coroutineitemsitemsize__main__memviewmode__module__nname__name__ndim__new__npnumpyobjoutputpackpixelpop__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerrel_xrel_yrender__set_name__setdefault__setstate____setstate_cython__shapesizesorted_spritesspspritesprite_hsprite_wsprite_xsprite_ystartstepstopstructsx0""sysy0__test__unpackupdatevaluesview_hview_wx_x_y\200\001\360(\000\005\031\230\003\2301\230A\360\030\000\005\t\210\005\210U\220!\2201\330\010\021\220\036\230q\240\001\330\010\r\210V\2207\230!\330\010\023\2202\220V\2301\230A\330\010\023\2202\220V\2301\230A\340\010\023\2206\230\021\330\010\023\2206\230\021\330\010\020\220\t\230\022\2301\330\010\020\220\t\230\022\2301\360\006\000\t\017\210i\220v\230R\230w\240a\330\010\016\210i\220v\230R\230w\240a\330\010\016\210f\220B\220a\330\010\013\2104\210r\220\021\330\014\022\220!\330\010\016\210f\220B\220a\330\010\013\2104\210r\220\021\330\014\022\220!\340\010\013\2104\210s\220$\220c\230\024\230S\240\001\330\014\r\360\006\000\t\017\210a\210y\230\006\230b\240\007\240q\330\010\016\210a\210y\230\006\230b\240\007\240q\360\006\000\t\r\210F\220%\220q\230\005\230Q\330\014\021\220\024\220S\230\003\2302\230Q\330\014\020\220\006\220e\2301\230E\240\021\330\020\030\230\002\230!\2304\230t\2403\240c\250\022\2501\330\020\023\2206\230\023\230A\330\024\032\230!\2304\230v\240QO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 142; i++) {
+    for (int i = 0; i < 146; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 47) PyUnicode_InternInPlace(&string);
@@ -21463,7 +21504,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 142; i < 144; i++) {
+    for (int i = 146; i < 148; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -21474,14 +21515,14 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 144; i++) {
+    for (Py_ssize_t i = 0; i < 148; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 142;
+      PyObject **table = stringtab + 146;
       for (Py_ssize_t i=0; i<2; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -21533,7 +21574,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
 }
 /* #### Code section: init_codeobjects ### */
 typedef struct {
-    unsigned int argcount : 4;
+    unsigned int argcount : 3;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 5;
@@ -21555,9 +21596,9 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 25, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 26};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_output, __pyx_mstate->__pyx_n_u_rendered_pixels, __pyx_mstate->__pyx_n_u_xs, __pyx_mstate->__pyx_n_u_ys, __pyx_mstate->__pyx_n_u_cam_x, __pyx_mstate->__pyx_n_u_cam_y, __pyx_mstate->__pyx_n_u_view_w, __pyx_mstate->__pyx_n_u_view_h, __pyx_mstate->__pyx_n_u_n, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_rel_x, __pyx_mstate->__pyx_n_u_rel_y, __pyx_mstate->__pyx_n_u_sprite_w, __pyx_mstate->__pyx_n_u_sprite_h, __pyx_mstate->__pyx_n_u_dx0, __pyx_mstate->__pyx_n_u_dx1, __pyx_mstate->__pyx_n_u_dy0, __pyx_mstate->__pyx_n_u_dy1, __pyx_mstate->__pyx_n_u_sx0, __pyx_mstate->__pyx_n_u_sy0, __pyx_mstate->__pyx_n_u_dy, __pyx_mstate->__pyx_n_u_dx, __pyx_mstate->__pyx_n_u_sy, __pyx_mstate->__pyx_n_u_pixel, __pyx_mstate->__pyx_n_u_sp};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_arcengine__raw_render_cython_pyx, __pyx_mstate->__pyx_n_u_blit_sprites, __pyx_mstate->__pyx_kp_b_iso88591_6_U_1__AQ_2V1A_2V1A_3b_3b_ivRwa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 26, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 26};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_output, __pyx_mstate->__pyx_n_u_sorted_sprites, __pyx_mstate->__pyx_n_u_cam_x, __pyx_mstate->__pyx_n_u_cam_y, __pyx_mstate->__pyx_n_u_view_w, __pyx_mstate->__pyx_n_u_view_h, __pyx_mstate->__pyx_n_u_n, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_rel_x, __pyx_mstate->__pyx_n_u_rel_y, __pyx_mstate->__pyx_n_u_sprite_w, __pyx_mstate->__pyx_n_u_sprite_h, __pyx_mstate->__pyx_n_u_dx0, __pyx_mstate->__pyx_n_u_dx1, __pyx_mstate->__pyx_n_u_dy0, __pyx_mstate->__pyx_n_u_dy1, __pyx_mstate->__pyx_n_u_sx0, __pyx_mstate->__pyx_n_u_sy0, __pyx_mstate->__pyx_n_u_dy, __pyx_mstate->__pyx_n_u_dx, __pyx_mstate->__pyx_n_u_sy, __pyx_mstate->__pyx_n_u_sprite_x, __pyx_mstate->__pyx_n_u_sprite_y, __pyx_mstate->__pyx_n_u_pixel, __pyx_mstate->__pyx_n_u_sp, __pyx_mstate->__pyx_n_u_sprite};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_arcengine__raw_render_cython_pyx, __pyx_mstate->__pyx_n_u_blit_sprites, __pyx_mstate->__pyx_kp_b_iso88591_1A_U_1_q_V7_2V1A_2V1A_6_6_1_1_i, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -27799,29 +27840,6 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
       retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, __Pyx_IS_C_CONTIG,
                                                    (PyBUF_C_CONTIGUOUS | PyBUF_FORMAT) | writable_flag, 2,
                                                    &__Pyx_TypeInfo_nn___pyx_t_5numpy_int8_t, stack,
-                                                   &result, obj);
-      if (unlikely(retcode == -1))
-          goto __pyx_fail;
-      return result;
-  __pyx_fail:
-      result.memview = NULL;
-      result.data = NULL;
-      return result;
-  }
-  
-/* ObjectToMemviewSlice */
-  static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_5numpy_int32_t(PyObject *obj, int writable_flag) {
-      __Pyx_memviewslice result = __Pyx_MEMSLICE_INIT;
-      __Pyx_BufFmt_StackElem stack[1];
-      int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_CONTIG) };
-      int retcode;
-      if (obj == Py_None) {
-          result.memview = (struct __pyx_memoryview_obj *) Py_None;
-          return result;
-      }
-      retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, __Pyx_IS_C_CONTIG,
-                                                   (PyBUF_C_CONTIGUOUS | PyBUF_FORMAT) | writable_flag, 1,
-                                                   &__Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t, stack,
                                                    &result, obj);
       if (unlikely(retcode == -1))
           goto __pyx_fail;
