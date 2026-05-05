@@ -31,7 +31,7 @@ The base class for ARCEngine games that manages levels and camera.
 from arcengine import ARCBaseGame, Level, Camera
 
 # Create a game with levels and optional custom camera
-game = ARCBaseGame(game_id="my_gane", levels=[level1, level2], camera=camera)  # camera is optional
+game = ARCBaseGame(game_id="my_game", levels=[level1, level2], camera=camera)  # camera is optional
 ```
 
 #### Properties
